@@ -25,7 +25,7 @@ data App = App
   , appConnPool    :: ConnectionPool -- ^ Database connection pool.
   , appHttpManager :: Manager
   , appLogger      :: Logger
-  , appFiles      :: Static
+  , appFiles       :: Static
   }
 
 instance HasHttpManager App where
@@ -64,7 +64,7 @@ instance Yesod App where
   -- Store session data on the client in encrypted cookies,
   -- default session idle timeout is 120 minutes
   makeSessionBackend _ = Just <$> defaultClientSessionBackend
-    (60 * 24 * 30) -- timeout in minutes, one month
+    (60 * 24 * 30 * 3) -- timeout in minutes, three months
     "config/client_session_key.aes"
 
   defaultLayout widget = do
@@ -77,12 +77,10 @@ instance Yesod App where
     -- default-layout-wrapper is the entire page. Since the final
     -- value passed to hamletToRepHtml cannot be a widget, this allows
     -- you to use normal widget features in default-layout.
-
     pc <- widgetToPageContent $ do
-      -- addStylesheet $ StaticR css_bootstrap_css
-      addStylesheetRemote "//cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css"
-      addScriptRemote "//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"
-      addScriptRemote "//cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js"
+      addStylesheetRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css"
+      addScriptRemote "//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+      addScriptRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"
       $(widgetFile "style")
       $(widgetFile "header")
       $(widgetFile "message")
@@ -123,6 +121,8 @@ instance Yesod App where
   isAuthorized ImageR _ = isAdmin
   isAuthorized ClubMembersR _ = isAdmin
   isAuthorized (ClubMemberR _) _ = isAdmin
+  isAuthorized PagesR _ = isAdmin
+  isAuthorized (EditPageR _) _ = isAdmin
 
   -- super admin
   isAuthorized AddUserR _ = isSuperAdmin
@@ -137,7 +137,8 @@ instance Yesod App where
     master <- getYesod
     let staticDir = appStaticDir $ appSettings master
     addStaticContentExternal
-        minifym
+        -- minifym
+        (\bs -> Right bs)
         genFileName
         staticDir
         (StaticR . flip StaticRoute [])

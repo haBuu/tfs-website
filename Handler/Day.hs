@@ -7,12 +7,13 @@ import Data.Time.LocalTime
 import qualified Model.Event as E
 import Helpers
 import Calendar
+import Members
 
 getDayR :: Day -> Handler Html
 getDayR date = do
-  -- let date = fromGregorian year month day
   events <- runDB $ E.getEventsDay date
   tz <- liftIO getCurrentTimeZone
+  members <- membersWidget
   widget <- calendarWidget
   defaultLayout $ do
     setTitle "Tampereen Frisbeeseura"

@@ -2,9 +2,9 @@
   <div .container>
     <a .navbar-brand href=@{HomeR}>
       Tampereen Frisbeeseura
-    <button .pull-right .navbar-toggler .hidden-sm-up type=button data-toggle=collapse data-target=#navbar>
+    <button .float-xs-right .navbar-toggler .hidden-sm-up type=button data-toggle=collapse data-target=#navbar>
       &#9776;
-    <div .collapse .navbar-toggleable-xs #navbar .pull-right>
+    <div .collapse .navbar-toggleable-xs #navbar .float-xs-right>
       <ul .nav .navbar-nav>
         <li .nav-item>
           <a .nav-link href=@{ClubR}>_{MsgNavClub}

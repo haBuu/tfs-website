@@ -76,3 +76,40 @@ Male: Male
 Female: Female
 MembershipDiscLabel: PDGA membership disc (only new members) 10€
 MagazineLabel: PDGA Discgolfer-magazine 30€
+ClubMembers: Members
+NegativePDGANumber: PDGA number can't be negative
+MemberAdded: Member added
+Add: Add
+EditPost: Edit post
+PostEdited: Post edited
+MondayShort: Mo
+TuesdayShort: Tu
+WednesdayShort: We
+ThursdayShort: Th
+FridayShort: Fr
+SaturdayShort: Sa
+SundayShort: Su
+January: January
+February: February
+March: March
+April: April
+May: May
+June: June
+July: July
+August: August
+September: September
+October: October
+November: November
+Devember: Devember
+UnknownMonth: ?
+DeletePost: Delete post
+DeletePostError: Failed to delete the post
+DeleteEventError: Failed to delete the event
+Pages: Pages
+EditPage: Edit page
+PageContent: Page content
+Club: Club
+Courses: Courses
+Competitions: Competitions
+Contact: Contact
+ResetOriginal: Reset original

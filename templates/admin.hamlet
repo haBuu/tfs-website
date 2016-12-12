@@ -1,10 +1,11 @@
 <div .container>
-  <div .m-t .btn-group .btn-group-vertical .btn-block .btn-group-lg>
+  <div .mt-1 .btn-group .btn-group-vertical .btn-block>
     <a href=@{AddPostR} .btn .btn-secondary>_{MsgAddPost}
     <a href=@{PostsR} .btn .btn-secondary>_{MsgEditPosts}
     <a href=@{AddEventR} .btn .btn-secondary>_{MsgAddEvent}
     <a href=@{EventsR} .btn .btn-secondary>_{MsgEditEvents}
+    <a href=@{PagesR} .btn .btn-secondary>_{MsgPages}
+    <a href=@{ClubMembersR} .btn .btn-secondary>_{MsgClubMembers} (Rating top 10)
     $if userSuperAdmin user
       <a href=@{UsersR} .btn .btn-secondary>_{MsgUsers}
-    <a href=@{ClubMembersR} .btn .btn-secondary>_{MsgClubMembers}
     <a href=@{AuthR LogoutR} .btn .btn-secondary>_{MsgLogout}

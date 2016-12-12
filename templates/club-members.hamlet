@@ -1,20 +1,28 @@
 <div .container>
-  <form .m-t method=post action=@{ClubMembersR}#form enctype=#{formEnctype}>
+  <form .mt-1 method=post action=@{ClubMembersR}#form enctype=#{formEnctype}>
     ^{formWidget}
 
-  <a .m-t href=@{AdminR} .btn .btn-secondary .btn-block .btn-lg>_{MsgBack}
+  <a .mt-1 href=@{AdminR} .btn .btn-secondary .btn-block .btn-lg>_{MsgBack}
 
-  <div .m-t .card .card-inverse>
+  <div .mt-1 .card .card-inverse>
     <div .card-primary .card-header>_{MsgClubMembers}
     <table .table #members>
       <tbody>
         $forall Entity mid member <- members
           <tr>
             <td #name>
-              Placeholder for name
+              $maybe name <- clubMemberName member
+                #{name}
+              $nothing
+                N/A
             <td #pdga>
               #{show $ clubMemberPdgaNumber member}
+            <td #rating>
+              $maybe rating <- clubMemberRating member
+                #{show rating}
+              $nothing
+                N/A
             <td>
-              <div .pull-right>
-                <button #remove data-url=@{ClubMemberR mid} .pull-right .m-l .btn .btn-danger>
+              <div .float-xs-right>
+                <button #remove data-url=@{ClubMemberR mid} .float-xs-right .ml-1 .btn .btn-danger>
                   _{MsgRemove}

@@ -9,12 +9,5 @@
               #{showTime tz $ eventCreated event}
               $maybe modified <- eventModified event
                 , _{MsgModified} #{showTime tz modified}
-            $forall paragraph <- E.toParagraphs event
-              $maybe src <- maybeImage paragraph
-                <img .m-t-lg .m-b-lg .center-block .img-rounded .img-responsive src=#{src}>
-              $nothing
-                <p .m-t .post-content>#{toArea paragraph}
-
-
-
+            <p .m-t .post-content>#{eventContent event}
     ^{sidebar}

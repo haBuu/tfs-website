@@ -1,0 +1,5 @@
+<code>[Teksti](URL)
+<code>![Kuvateksti](URL "Kuvateksti")
+<a href=https://guides.github.com/features/mastering-markdown target=_blank>Markdown ohje
+<hr>
+<div #preview>

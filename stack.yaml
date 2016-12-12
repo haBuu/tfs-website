@@ -1,8 +1,18 @@
 flags:
-  tfs-website:
-    library-only: false
-    dev: false
+  pandoc:
+    old-locale: false
 packages:
 - '.'
-extra-deps: []
+- location:
+    git: https://github.com/yesodweb/yesod
+    commit: f3fc735a25eb3d5c051c761b59070eb9a0e4e156
+  subdirs:
+  - yesod-bin
+  extra-dep: true
+extra-deps:
+- pandoc-1.15.0.6
+- yaml-0.8.14
+- yesod-markdown-0.10.0
+- say-0.1.0.0
+- typed-process-0.1.0.0
 resolver: lts-3.4

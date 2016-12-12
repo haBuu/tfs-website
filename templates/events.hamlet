@@ -1,9 +1,10 @@
 <div .container>
-  <a .m-t href=@{AdminR} .btn .btn-secondary .btn-block .btn-lg>_{MsgBack}
 
-  <div .m-t .card .card-inverse>
+  <a .mt-1 href=@{AdminR} .btn .btn-secondary .btn-block .btn-lg>_{MsgBack}
+
+  <div .mt-1 .card .card-inverse>
     <div .card-primary .card-header>_{MsgEvents}
-    <ul #events .list-group>
+    <ul #events .list-group .list-group-flush>
       $forall Entity eid event <- events
-        <a .list-group-item href=@{EditEventR eid}>
+        <a .list-group-item .list-group-item-action href=@{EditEventR eid}>
           #{eventTitle event}

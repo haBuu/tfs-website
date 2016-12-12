@@ -1,28 +1,5 @@
 <div .container>
-  <div .row .m-t-lg>
-    <div .col-sm-9>
-
-      <h1>Hallitus - 2015
-
-      <dl .m-t>
-        <dt>Puheenjohtaja -
-          <strong> pj [ät] tfs.fi / 050-3386752
-        <dd>Vesa Honkanen
-        <dt>Varapuheenjohtaja
-        <dd>Mikko Putaja
-        <dt>Sihteeri
-        <dd>Tapio Vuorinen
-        <dt>Rahastonhoitaja & Firmagolfvastaava -
-          <strong> firmagolf [ät] tfs.fi
-        <dd>Onni Ylinen
-        <dt>Kilpailuvastaava -
-          <strong> kilpailut [ät] tfs.fi
-        <dd>Suvi Rovio
-        <dt>Hallituksen jäsen
-        <dd>Sami Holmberg
-        <dt>WWW-vastaava
-        <dd>Janne Kinnunen
-        <dt>Löytökiekkovastaava
-        <dd>Markus Pöysti
-
-    ^{sidebar}
+  <div .col-sm-8 .mt-3>
+    <div #content>
+      #{content}
+  ^{sidebar}

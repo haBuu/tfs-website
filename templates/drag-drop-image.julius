@@ -28,7 +28,7 @@
           contentType: file.type,
           success: function(url) {
             var textArea = $('textarea');
-            textArea.val(textArea.val() + '\r\n' + '#{rawJS imagePrefix}' + url + '\r\n');
+            textArea.val(textArea.val() + '\r\n![](' + url + ')\r\n');
           },
           error: function(res) {
             alert('#{rawJS $ mr MsgImageUploadFailed}');
@@ -55,7 +55,7 @@
           contentType: blob.type,
           success: function(url) {
             var textArea = $('textarea');
-            textArea.val(textArea.val() + '\r\n' + '#{rawJS imagePrefix}' + url + '\r\n');
+            textArea.val(textArea.val() + '\r\n![](' + url + ')\r\n');
           },
           error: function(res) {
             alert('#{rawJS $ mr MsgImageUploadFailed}');

@@ -1,17 +1,5 @@
 <div .container>
-  <div .row .m-t-lg>
-    <div .col-sm-9>
-
-      <h1>Radat
-
-      <ul .m-t>
-        <li>
-          <a href="http://frisbeegolfradat.fi/rata/epila_tampere">Epilä DiscGolfPark, Tampere
-        <li>
-          <a href="http://frisbeegolfradat.fi/rata/vihioja_tampere">Vihioja DiscGolfPark, Tampere
-        <li>
-          <a href="http://frisbeegolfradat.fi/rata/hervanta_tampere">Hervanta, Tampere
-        <li>
-          <a href="http://frisbeegolfradat.fi/rata/julkujarvi_discgolfpark_ylojarvi">Julkujärvi DiscGolfPark, Ylöjärvi
-
-    ^{sidebar}
+  <div .col-sm-8 .mt-3>
+    <div #content>
+      #{content}
+  ^{sidebar}

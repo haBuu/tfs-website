@@ -17,6 +17,14 @@ getPosts page postsPerPage
     ]
   | otherwise = return []
 
+posts :: Int -> DB [(Entity Post, Entity User)]
+posts postLimit = E.select $
+  E.from $ \(post, user) -> do
+    E.where_ $ post ^. PostUserCreated E.==. user ^. UserId
+    E.orderBy [E.desc (post ^. PostCreated)]
+    E.limit $ fromIntegral postLimit
+    return (post, user)
+
 mkPostFromEvent :: Event -> Post
 mkPostFromEvent Event {..} =
-  Post eventUser eventCreated Nothing eventTitle eventContent
+  Post eventCreated eventUser Nothing Nothing eventTitle eventContent

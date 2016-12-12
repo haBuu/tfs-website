@@ -2,6 +2,7 @@ module Handler.Event where
 
 import Import
 
+import Yesod.Markdown
 import Yesod.Form.Bootstrap3
 import Text.Julius(rawJS)
 
@@ -123,7 +124,7 @@ newEventForm uid time extra = do
     (withPlaceholder (mr MsgTitle) $ bfs MsgTitle) Nothing
   (orgRes, orgView) <- mreq textField
     (withPlaceholder (mr MsgOrganizer) $ bfs MsgOrganizer) (Just "Tampereen Frisbeeseura")
-  (contentRes, contentView) <- mreq textareaField
+  (contentRes, contentView) <- mreq markdownField
     (withRows "10" $ withPlaceholder (mr MsgEvent) $ bfs MsgEvent) Nothing
   (startRes, startView) <- mreq dayField
     (withPlaceholder (mr MsgStartDate) $ bfs MsgStartDate) Nothing
@@ -183,7 +184,7 @@ editEventForm time event extra = do
     (withPlaceholder (mr MsgTitle) $ bfs MsgTitle) (Just $ eventTitle event)
   (orgRes, orgView) <- mreq textField
     (withPlaceholder (mr MsgOrganizer) $ bfs MsgOrganizer) (Just $ eventOrganizer event)
-  (contentRes, contentView) <- mreq textareaField
+  (contentRes, contentView) <- mreq markdownField
     (withRows "10" $ withPlaceholder (mr MsgEvent) $ bfs MsgEvent) (Just $ eventContent event)
   (startRes, startView) <- mreq dayField
     (withPlaceholder (mr MsgStartDate) $ bfs MsgStartDate) (Just $ eventStartDate event)

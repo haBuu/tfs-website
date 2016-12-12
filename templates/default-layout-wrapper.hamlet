@@ -15,6 +15,7 @@ $newline always
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link href=https://fonts.googleapis.com/css?family=Source+Sans+Pro:100,200,300,400,600,900 rel=stylesheet type=text/css>
+    <link href=https://fonts.googleapis.com/css?family=Lato%3A400%2C700%2C400italic%2C700italic&subset=latin%2Clatin-ext&ver=4.2-RC4-32277 rel=stylesheet type=text/css>
     ^{pageHead pc}
 
     \<!--[if lt IE 9]>

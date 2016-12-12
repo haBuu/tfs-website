@@ -6,6 +6,7 @@ import Data.Time.LocalTime
 
 import Helpers
 import Calendar
+import Members
 import Model.Post
 
 -- how many posts get displayed in one page
@@ -20,7 +21,6 @@ getHomeR = getHomePageR 1
 getHomePageR :: Int -> Handler Html
 getHomePageR page = do
   t <- liftIO today
-  liftIO $ print t
   (posts, postCount) <- runDB $ do
     p <- getPosts page postsPerPage
     c <- count ([] :: [Filter Post])
@@ -28,6 +28,7 @@ getHomePageR page = do
   let pages = ceiling $ fromIntegral postCount / fromIntegral postsPerPage
   tz <- liftIO getCurrentTimeZone
   widget <- calendarWidget
+  members <- membersWidget
   defaultLayout $ do
     setTitle "Tampereen Frisbeeseura"
     $(widgetFile "banner")

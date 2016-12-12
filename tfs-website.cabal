@@ -34,6 +34,7 @@ library
                      Handler.Contact
                      Handler.ClubMember
                      Handler.Day
+                     Handler.Pages
                      Forms
                      Helpers
                      ErrorHandlers
@@ -41,6 +42,10 @@ library
                      Calendar
                      Model.Event
                      Model.Post
+                     Model.Page
+                     Model.PageMarkdown
+                     Members
+                     PageMessage
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT
@@ -108,6 +113,7 @@ library
                  , mime-mail
                  , blaze-html
                  , esqueleto
+                 , yesod-markdown
 
 executable         tfs-website
     if flag(library-only)

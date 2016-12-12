@@ -1,0 +1,14 @@
+(function() {
+
+  var resetButton = jQuery("button#reset");
+  var markdownTextarea = jQuery("textarea#markdown");
+  var originalMarkdown = markdownTextarea.val();
+
+  resetButton.on("click", function() {
+    markdownTextarea.val(originalMarkdown);
+    // update the preview
+    // [0] gets the native DOM object from the jQuery object
+    markdownTextarea[0].editor.update();
+  });
+
+})();

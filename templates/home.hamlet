@@ -1,39 +1,43 @@
 <div .container>
-  <div .row .m-t-lg .m-b-lg>
-    <div .col-sm-9>
-      <div .posts>
-        $forall Entity _ post <- posts
-          <div .post>
-            <h1 .post-title>#{postTitle post}
-            <small .post-created .text-muted>
-              #{showTime tz $ postCreated post}
-              $maybe modified <- postModified post
-                , _{MsgModified} #{showTime tz modified}
-            $forall paragraph <- toParagraphs post
-              $maybe src <- maybeImage paragraph
-                <img .m-t-lg .m-b-lg .center-block .img-rounded .img-responsive src=#{src}>
-              $nothing
-                <p .m-t .post-content>#{toArea paragraph}
+  <div .col-md-8 .mt-3>
+    <div .posts>
+      $forall Entity _ post <- posts
+        <div .post .mb-2>
+          <h2 .post-title>#{postTitle post}
+          <small .post-created .text-muted>
+            #{showTime tz $ postCreated post}
+            $maybe modified <- postModified post
+              , _{MsgModified} #{showTime tz modified}
+          <div .mt-1>
+            #{postContent post}
+        <hr>
 
-      <nav .m-t-lg .m-b-lg>
+    $if pages > 1
+      <nav aria-label=Page navigation>
         <ul .pagination>
-          <li :(page == 1):.disabled>
-            $if page == 2
-              <a href=@{HomeR} aria-label="Previous">
-                <span aria-hidden="true">&laquo;
-                <span class="sr-only">Previous
-            $else
-              <a href=@{HomePageR (page - 1)} aria-label="Previous">
-                <span aria-hidden="true">&laquo;
-                <span class="sr-only">Previous
+          $if page /= 1
+            <li .page-item>
+              $if page == 2
+                <a .page-link href=@{HomeR} aria-label=Previous>
+                  <span aria-hidden=true>&laquo;
+                  <span .sr-only>Previous
+              $else
+                <a .page-link href=@{HomePageR (page - 1)} aria-label=Previous>
+                  <span aria-hidden=true>&laquo;
+                  <span .sr-only>Previous
 
           $forall i <- pageLinks page pages
-            <li :(page == i):.active>
-              <a href=@{HomePageR i}>#{show i}
+            $if i == 1
+              <li .page-item :(page == i):.active>
+                <a .page-link href=@{HomeR}>#{show i}
+            $else
+              <li .page-item :(page == i):.active>
+                <a .page-link href=@{HomePageR i}>#{show i}
 
-          <li :(page >= pages):.disabled>
-            <a href=@{HomePageR (page + 1)} aria-label="Next">
-              <span aria-hidden="true">&raquo;
-              <span class="sr-only">Next
+          $if page < pages
+            <li .page-item>
+              <a .page-link href=@{HomePageR (page + 1)} aria-label=Next>
+                <span aria-hidden=true>&raquo;
+                <span .sr-only>Next
 
-    ^{sidebar}
+  ^{sidebar}

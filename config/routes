@@ -33,5 +33,8 @@
 /admin/club-member ClubMembersR GET POST
 /admin/club-member/#ClubMemberId ClubMemberR DELETE
 
+/admin/pages PagesR GET
+/admin/page/#PageMarkdownId/edit EditPageR GET POST
+
 /admin/image ImageR POST
 /events/#Day DayR GET

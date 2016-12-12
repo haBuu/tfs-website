@@ -105,3 +105,11 @@ UnknownMonth: ?
 DeletePost: Poista uutinen
 DeletePostError: Uutisen poistaminen epäonnistui
 DeleteEventError: Tapahtuman poistaminen epäonnistui
+Pages: Sivut
+EditPage: Muokkaa sivua
+PageContent: Sivun sisältö
+Club: Seura
+Courses: Radat
+Competitions: Viikkokisat
+Contact: Yhteystiedot
+ResetOriginal: Palauta alkuperäinen

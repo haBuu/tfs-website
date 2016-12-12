@@ -19,6 +19,3 @@ getEventsDay day =
     ||. [EventStartDate <. day, EventEndDate >=. Just day]
   )
   [Desc EventStartDate]
-
-toParagraphs :: Event -> [Text]
-toParagraphs event = (T.splitOn "\r\n\r\n") $ unTextarea $ eventContent event

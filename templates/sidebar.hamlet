@@ -1,12 +1,14 @@
-<div .col-sm-3>
+<div .col-md-4 .mt-3 .px-1>
   ^{widget}
 
-  <div .m-t-lg .m-b-lg #partners>
+  ^{members}
+
+  <div #partners .my-3>
+    <a href=http://www.tampere.fi/ target=_blank>
+      <img .mb-3 .img-fluid .mx-auto .d-block alt=http://www.tampere.fi/ title="Tampereen kaupunki" src=http://www.tampere.fi/images/tampere-logo-wide.gif>
     <a href=https://www.facebook.com/groups/269964159713029/ target=_blank>
-      <img .m-b-lg .center-block .img-responsive alt=https://www.facebook.com/groups/269964159713029/ title=Facebook src=@{StaticR img_facebook_png}>
+      <img .mb-1 .img-fluid .mx-auto .d-block alt=https://www.facebook.com/groups/269964159713029/ title=Facebook src=@{StaticR img_facebook_png}>
     <a href=http://www.innovadiscs.com/ target=_blank>
-      <img .center-block .img-responsive alt=http://www.innovadiscs.com/ title=Innova src=@{StaticR img_innova_outline_color_png}>
+      <img .mb-1 .img-fluid .mx-auto .d-block alt=http://www.innovadiscs.com/ title=Innova src=@{StaticR img_innova_outline_color_png}>
     <a href=http://www.innovastore.fi/ target=_blank>
-      <img .center-block .img-responsive alt=http://www.innovastore.fi/ title=InnovaStore src=@{StaticR img_innovastore_logo_png}>
-    <a href=https://www.facebook.com/ISLielahti target=_blank>
-      <img .center-block .img-responsive alt=https://www.facebook.com/ISLielahti title=Intersport src=@{StaticR img_intersport_logo_jpg}>
+      <img .mb-1 .img-fluid .mx-auto .d-block alt=http://www.innovastore.fi/ title=InnovaStore src=@{StaticR img_innovastore_logo_png}>

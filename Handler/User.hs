@@ -41,10 +41,10 @@ editUserForm user extra = do
     (withPlaceholder (mr MsgEmail) $ bfs MsgEmail) (Just $ userEmail user)
   (adminRes, adminView) <- mreq checkBoxField
     (FieldSettings (SomeMessage MsgAdmin) Nothing Nothing Nothing
-      []) (Just $ userAdmin user)
+      [("class", "form-check-input")]) (Just $ userAdmin user)
   (superAdminRes, superAdminView) <- mreq checkBoxField
     (FieldSettings (SomeMessage MsgSuperAdmin) Nothing Nothing Nothing
-      []) (Just $ userSuperAdmin user)
+      [("class", "form-check-input")]) (Just $ userSuperAdmin user)
   let result = User <$> nameRes
                     <*> emailRes
                     <*> pure (userPassword user)
@@ -58,13 +58,12 @@ editUserForm user extra = do
         <div .form-group>
           <label .control-label>^{fvLabel emailView}
           ^{fvInput emailView}
-        <div .c-inputs-stacked>
-          <label .c-input .c-checkbox>
-            ^{fvInput adminView}^{fvLabel adminView}
-            <span .c-indicator>
-          <label .c-input .c-checkbox>
-            ^{fvInput superAdminView}^{fvLabel superAdminView}
-            <span .c-indicator>
+        <div .form-check>
+          <label .form-check-label>
+            ^{fvInput adminView} ^{fvLabel adminView}
+        <div .form-check>
+          <label .form-check-label>
+            ^{fvInput superAdminView} ^{fvLabel superAdminView}
         <div .form-group>
           <input type=submit .btn .btn-secondary .btn-block .btn-lg value=_{MsgSave}>
       |]
@@ -96,10 +95,10 @@ newUserForm extra = do
     (withPlaceholder (mr MsgPassword) $ bfs MsgPassword) Nothing
   (adminRes, adminView) <- mreq checkBoxField
     (FieldSettings (SomeMessage MsgAdmin) Nothing Nothing Nothing
-      []) Nothing
+      [("class", "form-check-input")]) Nothing
   (superAdminRes, superAdminView) <- mreq checkBoxField
     (FieldSettings (SomeMessage MsgSuperAdmin) Nothing Nothing Nothing
-      []) Nothing
+      [("class", "form-check-input")]) Nothing
   let result = User <$> nameRes
                     <*> emailRes
                     <*> pwRes
@@ -116,13 +115,12 @@ newUserForm extra = do
         <div .form-group>
           <label .control-label>^{fvLabel pwView}
           ^{fvInput pwView}
-        <div .c-inputs-stacked>
-          <label .c-input .c-checkbox>
-            ^{fvInput adminView}^{fvLabel adminView}
-            <span .c-indicator>
-          <label .c-input .c-checkbox>
-            ^{fvInput superAdminView}^{fvLabel superAdminView}
-            <span .c-indicator>
+        <div .form-check>
+          <label .form-check-label>
+            ^{fvInput adminView} ^{fvLabel adminView}
+        <div .form-check>
+          <label .form-check-label>
+            ^{fvInput superAdminView} ^{fvLabel superAdminView}
         <div .form-group>
           <input type=submit .btn .btn-secondary .btn-block .btn-lg value=_{MsgAddUser}>
       |]

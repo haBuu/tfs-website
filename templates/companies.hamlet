@@ -1,29 +1,5 @@
 <div .container>
-  <div .row .m-t-lg>
-    <div .col-sm-9>
-
-      <h1>Firmagolf
-      <p>Tampereen Frisbeeseura järjestää lajiesittelyjä yrityksille:
-
-      <ul>
-        <li>
-          Paikka:
-          <a href="http://frisbeegolfradat.fi/rata/epila_tampere">Epilä
-        <li>Kesto noin 2h
-        <li>Ensin heittotreeniä, sitten radalla kiertämistä ja mahdollisesti leikkimielistä kisailua
-        <li>Hinnat:
-        <ul class="nested">
-          <li>1-10 henkeä 250€
-          <li>11-20 henkeä 300€
-        <li>Seura lainaa tapahtumaan kiekot ja muut tarvittavat varusteet. Vaatetuksena säänmukaiset ulkoiluvaatteet.
-
-      <p>
-        Halutessaan ennen tapahtumaa voi tutusta Suomen Frisbeeliiton
-        <a href="http://frisbeegolfliitto.fi/aloittelijat/" target="_blank">lajiesittelyyn
-        ja
-        <a href="http://www.discmania.net/deep-in-the-game/" target="_blank">Discmanian Deep in the game -videoihin.
-
-      <p>e-mail:
-        <strong> firmagolf [ät] tfs.fi
-
-    ^{sidebar}
+  <div .col-sm-8 .mt-3>
+    <div #content>
+      #{content}
+  ^{sidebar}

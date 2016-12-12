@@ -1,10 +1,16 @@
 <div .container>
 
-  <a .m-t href=@{AdminR} .btn .btn-secondary .btn-block .btn-lg>_{MsgBack}
+  <a .mt-1 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
 
-  <div .m-t .card .card-inverse>
+  <div .mt-1 .card .card-inverse>
     <div .card-primary .card-header>_{MsgPosts}
-    <ul #posts .list-group>
-      $forall Entity pid post <- posts
-        <a .list-group-item href=@{EditPostR pid}>
-          #{postTitle post}
+    <ul #posts .list-group .list-group-flush>
+      $forall (Entity pid post, Entity _ user) <- posts
+        <a .list-group-item .list-group-item-action href=@{EditPostR pid}>
+          <h5 .list-group-item-heading>
+            #{postTitle post}
+          <p .text-muted .list-group-item-text>
+            #{showTime tz $ postCreated post}, #{userName user}
+          $maybe modified <- postModified post
+            <p .text-muted .list-group-item-text>
+              #{showTime tz modified}, #{userName user}

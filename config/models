@@ -8,11 +8,21 @@ User
   deriving Show
 
 Post
-  user UserId
   created UTCTime
+  userCreated UserId
   modified UTCTime Maybe
+  userModified UserId Maybe
   title Text
-  content Textarea
+  content Markdown
+  deriving Show
+
+PageMarkdown
+  page Page
+  content Markdown
+  created UTCTime
+  userCreated UserId
+  modified UTCTime Maybe
+  userModified UserId Maybe
   deriving Show
 
 Event
@@ -21,7 +31,7 @@ Event
   modified UTCTime Maybe
   title Text
   organizer Text
-  content Textarea
+  content Markdown
   startDate Day
   endDate Day Maybe
   post PostId Maybe
@@ -29,5 +39,7 @@ Event
 
 ClubMember
   pdgaNumber Int
+  name Text Maybe
+  rating Int Maybe
   UniqueClubMember pdgaNumber
   deriving Show

@@ -1,5 +1,5 @@
 body
-  font-family: "Source Sans Pro", Arial, sans-serif
+  font-family: Lato, "Source Sans Pro", Arial, sans-serif
 
 nav.navbar
   background-color: #ffffff
@@ -45,3 +45,17 @@ table#calendar td
 table#calendar td a
   text-decoration: none
   color: #000
+
+div#members table thead th
+  text-align: center
+
+.pagination
+  text-align: center
+
+div.post img, div#partners img, div#preview img
+  max-width: 100%
+  height: auto
+
+h2.post-title
+  word-wrap: break-word
+  word-break: hyphenate

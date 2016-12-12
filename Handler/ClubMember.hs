@@ -9,7 +9,7 @@ import Forms
 getClubMembersR :: Handler Html
 getClubMembersR = do
   ((_, formWidget), formEnctype) <- runFormPost memberForm
-  members <- runDB $ selectList [] [Desc ClubMemberPdgaNumber]
+  members <- runDB $ selectList [] [Desc ClubMemberName]
   defaultLayout $ do
     setTitleI MsgClubMembers
     $(widgetFile "club-members")
@@ -32,7 +32,7 @@ memberForm extra = do
   mr <- getMessageRender
   (pdgaRes, pdgaView) <- mreq (checkPDGANumber intField)
     (withPlaceholder (mr MsgPDGANumber) $ bfs MsgPDGANumber) Nothing
-  let result = ClubMember <$> pdgaRes
+  let result = ClubMember <$> pdgaRes <*> pure Nothing <*> pure Nothing
   let widget = [whamlet|
         #{extra}
         <div .form-group>

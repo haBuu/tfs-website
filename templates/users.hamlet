@@ -1,9 +1,9 @@
 <div .container>
-  <a .m-t href=@{AddUserR} .btn .btn-secondary .btn-block .btn-lg>_{MsgAddUser}
-  <a .m-t href=@{AdminR} .btn .btn-secondary .btn-block .btn-lg>_{MsgBack}
+  <a .mt-1 href=@{AddUserR} .btn .btn-secondary .btn-block .btn-lg>_{MsgAddUser}
+  <a .mt-1 href=@{AdminR} .btn .btn-secondary .btn-block .btn-lg>_{MsgBack}
 
-  <div .m-t  .card .card-inverse>
+  <div .mt-1  .card .card-inverse>
     <div .card-primary .card-header>_{MsgUsers} (#{length users})
-    <ul .list-group>
-    $forall Entity uid user <- users
-      <a href=@{UserR uid} .list-group-item>#{userName user}
+    <ul .list-group .list-group-flush>
+      $forall Entity uid user <- users
+        <a href=@{UserR uid} .list-group-item .list-group-item-action>#{userName user}

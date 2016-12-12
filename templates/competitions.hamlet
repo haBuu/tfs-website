@@ -1,42 +1,5 @@
 <div .container>
-  <div .row .m-t-lg>
-    <div .col-sm-9>
-
-      <h1>Viikkokisat
-      <small .text-muted>Päivitetty 17.9.2015
-
-      <p>Tampereen Frisbeeseura järjestää viikkokisoja Epilän ja Vihiojan frisbeegolfradoilla:
-
-      <p>
-        <h4>Vihioja:
-
-        <ul>
-          <li>Maanantaisin kello 17:00
-          <li>Kisassa heitetään 2x9 väylää ja se kestää noin 2,5 tuntia
-          <li>Ilmoittautuminen alkaa 16:45 ykkösväylän heittopaikan luona ja mukaan mahtuu 54 ensimmäistä
-
-      <p>
-        <h4>Epilä:
-
-        <ul>
-          <li>Keskiviikkoisin kello 17:00
-          <li>Kisassa heitetään 2x9 väylää ja se kestää noin 2,5 tuntia
-          <li>Ilmoittautuminen alkaa 16:45 kolmosväylän heittopaikan luona ja mukaan mahtuu 54 ensimmäistä
-
-      <p>
-        Viikkokisoissa pelataan 4 luokkaa: avoin, naiset, junnut ja papat.
-        Osallistumismaksu on 2e.
-        Maksusta 1,5e menee kunkin luokan raakatulospalkintoon ja 0.5e tasoituksen palkintoon "kaikki voittajalle" -periaattella.
-        Mahdollisissa tasatuloksissa pelataan sudari.
-        Tasoitusluokan tasatuloksissa palkinto jaetaan.
-
-      <p>
-        Holaripotti on tänä vuonna jäsenetu.
-        Osallistuminen on ilmaista, ja seura maksaa holaripalkinnot.
-        Vain TFS:n jäsen voi voittaa potin.
-        Potissa on aina pohjalla 10e, ja summa kasvaa 5 eurolla per kisa.
-        Vihnun ja Epilän potti on yhteinen, eli viikossa tulee siis kymppi lisää.
-
-      <a href="http://kisa.tfs.fi/">Viikkokisasovellus
-
-    ^{sidebar}
+  <div .col-sm-8 .mt-3>
+    <div #content>
+      #{content}
+  ^{sidebar}

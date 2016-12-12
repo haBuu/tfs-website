@@ -1,0 +1,11 @@
+<div .container .mt-1>
+  <a .mb-1 href=@{PagesR} .btn .btn-secondary .btn-block>_{MsgBack}
+  <h1>_{pageMsg $ pageMarkdownPage pageMarkdown}
+  <form method=post action=@{EditPageR pageId}#form>
+    <div .form-group>
+      <textarea .form-control #markdown name=markdown rows=20 oninput=this.editor.update()>
+        #{unMarkdown $ pageMarkdownContent pageMarkdown}
+    <div .form-group>
+      <button #save type=submit .btn .btn-secondary .btn-block>_{MsgSave}
+  <button .mb-1 #reset type=button .btn .btn-secondary .btn-block>_{MsgResetOriginal}
+  ^{markdownPreview}

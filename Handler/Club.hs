@@ -12,14 +12,16 @@ import qualified Data.Text.Lazy.Encoding
 import Forms
 import Helpers
 import Calendar
+import Members
 
 getClubR :: Handler Html
 getClubR = do
-  -- ((_, formWidget), formEnctype) <- runFormPost joinForm
+  (year, _, _) <- liftM (toGregorian . utctDay) $ liftIO getCurrentTime
   let formDays, formMonths, formYears :: [Int]
       formDays = [1..31]
       formMonths = [1..12]
-      formYears = [1915..2015]
+      formYears = [1900..fromIntegral year]
+  members <- membersWidget
   widget <- calendarWidget
   defaultLayout $ do
     $(widgetFile "banner")
@@ -47,14 +49,16 @@ postClubR = do
     <*> ireq checkBoxField "disc"
     <*> ireq checkBoxField "magazine"
     <* ireq (checkCheck textField) "check"
-  liftIO $ print result
   liftIO $ sendJoinMail result
   liftIO $ sendPaymentInfoMail result
   redirect ClubR
 
+sender :: Text -> Address
+sender from = Address (Just "Tampereen Frisbeeseura") from
+
 sendPaymentInfoMail :: Member -> IO ()
 sendPaymentInfoMail member = do
-  liftIO $ renderSendMail (emptyMail $ Address (Just "Tampereen Frisbeeseura") "jasenvastaava@tfs.fi")
+  liftIO $ renderSendMail (emptyMail $ sender "jasenvastaava@tfs.fi")
     { mailTo = [Address Nothing (email member)]
     , mailHeaders =
         [ ("Subject", "Liittyminen Tampereen Frisbeeseuraan")
@@ -71,7 +75,7 @@ sendPaymentInfoMail member = do
           [stext|
             Tilinumero: FI17 8330 0710 4436 19
             Saaja: Tampereen Frisbeeseura
-            Viestiin: Jäsenmaksu 2016, #{name}.
+            Viestiin: Jäsenmaksu 2017, #{name}.
             Summa: #{show $ countSum member} €
           |]
       , partHeaders = []
@@ -84,7 +88,7 @@ sendPaymentInfoMail member = do
           [shamlet|
             <p>Tilinumero: FI17 8330 0710 4436 19
             <p>Saaja: Tampereen Frisbeeseura
-            <p>Viestiin: Jäsenmaksu 2016, #{name}.
+            <p>Viestiin: Jäsenmaksu 2017, #{name}.
             <p>Summa: #{show $ countSum member} €
           |]
       , partHeaders = []
@@ -93,7 +97,7 @@ sendPaymentInfoMail member = do
 sendJoinMail :: Member -> IO ()
 sendJoinMail member@Member {..} = do
   let name = firstName ++ " " ++ lastName
-  liftIO $ renderSendMail (emptyMail $ Address (Just "Tampereen Frisbeeseura") "lomake@tfs.fi")
+  liftIO $ renderSendMail (emptyMail $ sender "lomake@tfs.fi")
     { mailTo = [Address Nothing "jasenvastaava@tfs.fi"]
     , mailHeaders =
         [ ("Subject", "Seuraan liittyminen, " ++ name)
@@ -236,114 +240,4 @@ data License = NoLicense | A | B
 
 -- bot checking
 checkCheck :: Field Handler Text -> Field Handler Text
-checkCheck = checkBool (\v -> v == "5") MsgCheckError
-
--- joinForm :: Form Member
--- joinForm extra = do
---   mr <- getMessageRender
---   (firstNameRes, firstNameView) <- mreq textField
---     (withPlaceholder (mr MsgFirstName) $ bfs MsgFirstName) Nothing
---   (lastNameRes, lastNameView) <- mreq textField
---     (withPlaceholder (mr MsgLastName) $ bfs MsgLastName) Nothing
---   (addressRes, addressView) <- mreq textField
---     (withPlaceholder (mr MsgAddress) $ bfs MsgAddress) Nothing
---   (zipCodeRes, zipCodeView) <- mreq intField
---     (withPlaceholder (mr MsgZipCode) $ bfs MsgZipCode) Nothing
---   (cityRes, cityView) <- mreq textField
---     (withPlaceholder (mr MsgCity) $ bfs MsgCity) Nothing
---   (phoneRes, phoneView) <- mreq intField
---     (withPlaceholder (mr MsgPhone) $ bfs MsgPhone) Nothing
---   (emailRes, emailView) <- mreq emailField
---     (withPlaceholder (mr MsgEmail) $ bfs MsgEmail) Nothing
---   (sexRes, sexView) <- mreq (radioField sexOptions)
---     (withPlaceholder (mr MsgSex) $ bfs MsgSex) Nothing
---   (dobRes, dobView) <- mreq dayField
---     (withPlaceholder (mr MsgDateOfBirth) $ bfs MsgDateOfBirth) Nothing
---   (pdgaRes, pdgaView) <- mopt intField
---     (withPlaceholder (mr MsgPDGANumber) $ bfs MsgPDGANumber) Nothing
---   (msRes, msView) <- mreq (radioField membershipOptions)
---     (withPlaceholder (mr MsgMembership) $ bfs MsgMembership) Nothing
---   (licenseRes, licenseView) <- mopt (radioField licenseOptions)
---     (withPlaceholder (mr MsgMembership) $ bfs MsgMembership) Nothing
---   (msDiscRes, msDiscView) <- mreq checkBoxField
---     (withPlaceholder (mr MsgMembershipDisc) $ bfs MsgMembershipDisc) Nothing
---   (magazineRes, magazineView) <- mreq checkBoxField
---     (withPlaceholder (mr MsgMagazine) $ bfs MsgMagazine) Nothing
---   (checkRes, checkView) <- mreq (checkCheck textField)
---     (withPlaceholder (mr MsgCheck) $ bfs MsgCheck) Nothing
---   let result = Member
---                 <$> firstNameRes
---                 <*> lastNameRes
---                 <*> addressRes
---                 <*> zipCodeRes
---                 <*> cityRes
---                 <*> phoneRes
---                 <*> emailRes
---                 <*> sexRes
---                 <*> dobRes
---                 <*> pdgaRes
---                 <*> msRes
---                 <*> licenseRes
---                 <*> msDiscRes
---                 <*> magazineRes
---   let widget = [whamlet|
---         #{extra}
---         <div .form-group>
---           <label .control-label>^{fvLabel firstNameView}
---           ^{fvInput firstNameView}
---         <div .form-group>
---           <label .control-label>^{fvLabel lastNameView}
---           ^{fvInput lastNameView}
---         <div .form-group>
---           <label .control-label>^{fvLabel addressView}
---           ^{fvInput addressView}
---         <div .form-group>
---           <label .control-label>^{fvLabel zipCodeView}
---           ^{fvInput zipCodeView}
---         <div .form-group>
---           <label .control-label>^{fvLabel cityView}
---           ^{fvInput cityView}
---         <div .form-group>
---           <label .control-label>^{fvLabel phoneView}
---           ^{fvInput phoneView}
---         <div .form-group>
---           <label .control-label>^{fvLabel emailView}
---           ^{fvInput emailView}
-
---         <div .form-group>
---           <div class="radio">
---             <label class="radio-inli2ne">
---               ^{fvInput sexView}
-
---         <div .form-group>
---           <label .control-label>^{fvLabel dobView}
---           <div .input-group .date>
---             ^{fvInput dobView}
---             <span .input-group-addon>
---               <i .glyphicon .glyphicon-calendar>
---         <div .form-group>
---           <label .control-label>^{fvLabel pdgaView}
---           ^{fvInput pdgaView}
---         <div .form-group>
---           <label>^{fvLabel msView}
---           <div .radio>
---             ^{fvInput msView}
---         <div .form-group>
---           <label>^{fvLabel licenseView}
---           <div .radio>
---             ^{fvInput licenseView}
---         <div .form-group>
---           <label .c-input .c-checkbox>
---             ^{fvInput msDiscView}_{MsgMembershipDiscLabel}
---             <span .c-indicator>
---         <div .form-group>
---           <label .c-input .c-checkbox>
---             ^{fvInput magazineView}_{MsgMagazineLabel}
---             <span .c-indicator>
---         <div .form-group>
---           <label .control-label>^{fvLabel checkView}
---           ^{fvInput checkView}
---         <div .form-group>
---           <input type=submit .btn .btn-secondary .btn-block .btn-lg value=_{MsgSend}>
---       |]
---   return (result, widget)
+checkCheck = checkBool (\v -> v == "5" || toLower v == "viisi") MsgCheckError
