@@ -11,8 +11,8 @@ import Model.PageMarkdown
 
 getCompaniesR :: Handler Html
 getCompaniesR = do
-  widget <- calendarWidget
-  members <- membersWidget
+  calendar <- calendarWidget
+  bagtag <- bagtagWidget
   content <- runDB $ getPageMarkdown Companies
   defaultLayout $ do
     setTitleI MsgCompanies

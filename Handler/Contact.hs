@@ -10,8 +10,8 @@ import Model.PageMarkdown
 
 getContactR :: Handler Html
 getContactR = do
-  members <- membersWidget
-  widget <- calendarWidget
+  calendar <- calendarWidget
+  bagtag <- bagtagWidget
   content <- runDB $ getPageMarkdown Contact
   defaultLayout $ do
     $(widgetFile "banner")

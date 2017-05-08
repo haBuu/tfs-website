@@ -15,8 +15,6 @@
         <li .nav-item>
           <a .nav-link href=@{CompetitionsR}>_{MsgNavWeeklyCompetitions}
         <li .nav-item>
-          <a .nav-link href=http://tfs.fi/foorumi>_{MsgNavForum}
-        <li .nav-item>
           <a .nav-link href=@{ContactR}>_{MsgNavContact}
         $maybe (Entity _ user) <- muser
           $if userAdmin user

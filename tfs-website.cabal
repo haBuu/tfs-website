@@ -114,6 +114,9 @@ library
                  , blaze-html
                  , esqueleto
                  , yesod-markdown
+                 , foreign-store
+                 , wreq
+                 , lens
 
 executable         tfs-website
     if flag(library-only)

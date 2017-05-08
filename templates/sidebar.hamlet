@@ -1,14 +1,15 @@
 <div .col-md-4 .mt-3 .px-1>
-  ^{widget}
-
-  ^{members}
+  ^{calendar}
 
   <div #partners .my-3>
     <a href=http://www.tampere.fi/ target=_blank>
       <img .mb-3 .img-fluid .mx-auto .d-block alt=http://www.tampere.fi/ title="Tampereen kaupunki" src=http://www.tampere.fi/images/tampere-logo-wide.gif>
-    <a href=https://www.facebook.com/groups/269964159713029/ target=_blank>
-      <img .mb-1 .img-fluid .mx-auto .d-block alt=https://www.facebook.com/groups/269964159713029/ title=Facebook src=@{StaticR img_facebook_png}>
-    <a href=http://www.innovadiscs.com/ target=_blank>
-      <img .mb-1 .img-fluid .mx-auto .d-block alt=http://www.innovadiscs.com/ title=Innova src=@{StaticR img_innova_outline_color_png}>
-    <a href=http://www.innovastore.fi/ target=_blank>
-      <img .mb-1 .img-fluid .mx-auto .d-block alt=http://www.innovastore.fi/ title=InnovaStore src=@{StaticR img_innovastore_logo_png}>
+    <div .row>
+      <div .offset-xs-2 .offset-md-2 .col-md-4 .col-xs-4>
+        <a href=https://www.facebook.com/groups/269964159713029/ target=_blank>
+          <img .small-image .img-fluid .mx-auto .d-block alt=https://www.facebook.com/groups/269964159713029/ title=Facebook src=@{StaticR img_facebook_png}>
+      <div .col-md-4 .col-xs-4>
+        <a href=https://www.instagram.com/tampereen_frisbeeseura/ target=_blank>
+          <img .small-image .img-fluid .mx-auto .d-block alt=https://www.instagram.com/tampereen_frisbeeseura/ title=Instagram src=@{StaticR img_instagram_png}>
+
+  ^{bagtag}

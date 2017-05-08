@@ -100,6 +100,7 @@ instance Yesod App where
 
   -- public
   isAuthorized HomeR _ = return Authorized
+  isAuthorized (OnePostR _) _ = return Authorized
   isAuthorized (HomePageR _) _ = return Authorized
   isAuthorized ClubR _ = return Authorized
   isAuthorized CoursesR _ = return Authorized

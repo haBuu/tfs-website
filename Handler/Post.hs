@@ -17,9 +17,17 @@ import Model.Post
 postLimit :: Int
 postLimit = 50
 
+getOnePostR :: PostId -> Handler Html
+getOnePostR pid = do
+  post <- runDB $ get404 pid
+  tz <- liftIO getCurrentTimeZone
+  defaultLayout $ do
+    $(widgetFile "post")
+
 getPostsR :: Handler Html
 getPostsR = do
   posts <- runDB $ posts postLimit
+  liftIO $ print posts
   tz <- liftIO getCurrentTimeZone
   defaultLayout $ do
     setTitleI MsgEditPosts

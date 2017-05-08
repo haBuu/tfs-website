@@ -1,9 +1,11 @@
 <div .container>
   <div .col-md-8 .mt-3>
     <div .posts>
-      $forall Entity _ post <- posts
+      $forall Entity pid post <- posts
         <div .post .mb-2>
-          <h2 .post-title>#{postTitle post}
+          <h2 .post-title>
+            <a .post-link href=@{OnePostR pid}>
+              #{postTitle post}
           <small .post-created .text-muted>
             #{showTime tz $ postCreated post}
             $maybe modified <- postModified post

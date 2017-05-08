@@ -10,8 +10,8 @@ import Model.PageMarkdown
 
 getCompetitionsR :: Handler Html
 getCompetitionsR = do
-  members <- membersWidget
-  widget <- calendarWidget
+  calendar <- calendarWidget
+  bagtag <- bagtagWidget
   content <- runDB $ getPageMarkdown Competitions
   defaultLayout $ do
     $(widgetFile "banner")

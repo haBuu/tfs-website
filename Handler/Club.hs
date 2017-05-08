@@ -21,8 +21,8 @@ getClubR = do
       formDays = [1..31]
       formMonths = [1..12]
       formYears = [1900..fromIntegral year]
-  members <- membersWidget
-  widget <- calendarWidget
+  calendar <- calendarWidget
+  bagtag <- bagtagWidget
   defaultLayout $ do
     $(widgetFile "banner")
     let sidebar = $(widgetFile "sidebar")

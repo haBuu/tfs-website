@@ -27,8 +27,8 @@ getHomePageR page = do
     return (p, c)
   let pages = ceiling $ fromIntegral postCount / fromIntegral postsPerPage
   tz <- liftIO getCurrentTimeZone
-  widget <- calendarWidget
-  members <- membersWidget
+  calendar <- calendarWidget
+  bagtag <- bagtagWidget
   defaultLayout $ do
     setTitle "Tampereen Frisbeeseura"
     $(widgetFile "banner")

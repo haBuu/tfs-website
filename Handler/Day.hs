@@ -13,8 +13,8 @@ getDayR :: Day -> Handler Html
 getDayR date = do
   events <- runDB $ E.getEventsDay date
   tz <- liftIO getCurrentTimeZone
-  members <- membersWidget
-  widget <- calendarWidget
+  calendar <- calendarWidget
+  bagtag <- bagtagWidget
   defaultLayout $ do
     setTitle "Tampereen Frisbeeseura"
     $(widgetFile "banner")
