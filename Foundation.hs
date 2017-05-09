@@ -89,8 +89,6 @@ instance Yesod App where
       setTitle "Tampereen Frisbeeseura"
     withUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")
 
-
-
   -- The page to be redirected to when authentication is required.
   authRoute _ = Just $ AuthR LoginR
 

@@ -9,3 +9,4 @@
             , _{MsgModified} #{showTime tz modified}
         <div .mt-1>
           #{postContent post}
+  ^{sidebar}

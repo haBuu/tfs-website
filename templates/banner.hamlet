@@ -1,2 +1,3 @@
 <div #banner>
-  <img src=@{StaticR img_hiedanranta3_jpg} style="visibility: hidden;">
+  <img .banner src=@{StaticR img_hiedanranta3_jpg} style="visibility: hidden;">
+  <img .logo src=@{StaticR img_tfs_logo_png}>

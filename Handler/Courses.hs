@@ -14,7 +14,6 @@ getCoursesR = do
   bagtag <- bagtagWidget
   content <- runDB $ getPageMarkdown Courses
   defaultLayout $ do
-    $(widgetFile "banner")
     let sidebar = $(widgetFile "sidebar")
     $(widgetFile "calendar")
     $(widgetFile "courses")

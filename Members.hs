@@ -11,7 +11,6 @@ import Import hiding (for, get, responseBody)
 import GHC.Generics (Generic)
 import Network.Wreq
 import Control.Lens
--- import Control.Exception
 import Data.Aeson (FromJSON)
 import Data.Aeson.Types (typeMismatch)
 

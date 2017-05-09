@@ -13,6 +13,27 @@ div#banner
   background: url(@{StaticR img_hiedanranta3_jpg}) center top
   width: 100%
   overflow: hidden
+  position: relative
+  top: 0
+  left: 0
+
+.banner
+  position: relative
+  top: 0
+  left: 0
+
+.logo
+  height: 280px
+  position: absolute
+  top: 10px
+  left: 20px
+
+.image22
+  position: absolute
+  top: 10px
+  left: 350px
+  height: 300px
+  text-align: left
 
 table#calendar
   text-align: center

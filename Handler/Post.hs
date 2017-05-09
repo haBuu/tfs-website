@@ -9,6 +9,8 @@ import Text.Julius(rawJS)
 
 import Helpers
 import Model.Post
+import Members
+import Calendar
 
 -- how many posts gets displayed
 -- this will prevent admin from editing posts
@@ -21,7 +23,10 @@ getOnePostR :: PostId -> Handler Html
 getOnePostR pid = do
   post <- runDB $ get404 pid
   tz <- liftIO getCurrentTimeZone
+  calendar <- calendarWidget
+  bagtag <- bagtagWidget
   defaultLayout $ do
+    let sidebar = $(widgetFile "sidebar")
     $(widgetFile "post")
 
 getPostsR :: Handler Html
@@ -72,7 +77,6 @@ postPostR pid = do
     <*> pure (Just uid)
     <*> ireq textField "title"
     <*> ireq markdownField "markdown"
-  liftIO $ print result
   runDB $ replace pid result
   setMessageI MsgPostEdited
   redirect $ EditPostR pid
