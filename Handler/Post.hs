@@ -29,14 +29,14 @@ getPostsR = do
   posts <- runDB $ posts postLimit
   liftIO $ print posts
   tz <- liftIO getCurrentTimeZone
-  defaultLayout $ do
+  adminLayout $ do
     setTitleI MsgEditPosts
     $(widgetFile "posts")
 
 getAddPostR :: Handler Html
 getAddPostR = do
   uid <- requireAuthId
-  defaultLayout $ do
+  adminLayout $ do
     setTitleI MsgAddPost
     mr <- getMessageRender
     addScript $ StaticR js_markdown_js
@@ -85,7 +85,7 @@ deletePostR pid = do
 getEditPostR :: PostId -> Handler Html
 getEditPostR pid = do
   post <- runDB $ get404 pid
-  defaultLayout $ do
+  adminLayout $ do
     setTitleI MsgEditPost
     mr <- getMessageRender
     addScript $ StaticR js_markdown_js

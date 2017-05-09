@@ -16,7 +16,6 @@ getCompaniesR = do
   content <- runDB $ getPageMarkdown Companies
   defaultLayout $ do
     setTitleI MsgCompanies
-    $(widgetFile "banner")
     let sidebar = $(widgetFile "sidebar")
     $(widgetFile "calendar")
     $(widgetFile "companies")

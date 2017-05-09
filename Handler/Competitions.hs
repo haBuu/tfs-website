@@ -14,7 +14,6 @@ getCompetitionsR = do
   bagtag <- bagtagWidget
   content <- runDB $ getPageMarkdown Competitions
   defaultLayout $ do
-    $(widgetFile "banner")
     let sidebar = $(widgetFile "sidebar")
     $(widgetFile "calendar")
     $(widgetFile "competitions")

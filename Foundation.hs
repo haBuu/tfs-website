@@ -83,10 +83,13 @@ instance Yesod App where
       addScriptRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"
       $(widgetFile "style")
       $(widgetFile "header")
+      $(widgetFile "banner")
       $(widgetFile "message")
       $(widgetFile "default-layout")
       setTitle "Tampereen Frisbeeseura"
     withUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")
+
+
 
   -- The page to be redirected to when authentication is required.
   authRoute _ = Just $ AuthR LoginR
@@ -213,6 +216,8 @@ instance YesodAuth App where
 
   authHttpManager = getHttpManager
 
+  authLayout = adminLayout
+
 instance HashDBUser User where
   userPasswordHash = userPassword
   setPasswordHash h u = u { userPassword = Just h }
@@ -238,7 +243,7 @@ unsafeHandler = Unsafe.fakeHandlerGetLogger appLogger
 myLoginForm :: Route App -> Widget
 myLoginForm action = do
   [whamlet|
-    <div .container .m-t>
+    <div .container .mt-1>
       <form method=post action=@{action}>
         <fieldset .form-group>
           <label>_{MsgName}
@@ -247,5 +252,21 @@ myLoginForm action = do
           <label>_{MsgPassword}
           <input type=password name=password .form-control placeholder=_{MsgPassword}>
         <fieldset .form-group>
-          <button type=submit .btn .btn-secondary .btn-block .btn-lg>_{MsgLogin}
+          <button type=submit .btn .btn-secondary .btn-block>_{MsgLogin}
   |]
+
+adminLayout :: Widget -> Handler Html
+adminLayout widget = do
+  master <- getYesod
+  mmsg <- getMessage
+  muser <- maybeAuth
+  pc <- widgetToPageContent $ do
+    addStylesheetRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css"
+    addScriptRemote "//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+    addScriptRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"
+    $(widgetFile "style")
+    $(widgetFile "header")
+    $(widgetFile "message")
+    $(widgetFile "default-layout")
+    setTitle "Tampereen Frisbeeseura"
+  withUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")

@@ -11,7 +11,7 @@ import Data.Maybe
 getUsersR :: Handler Html
 getUsersR = do
   users <- runDB $ selectList [] [Asc UserName]
-  defaultLayout $ do
+  adminLayout $ do
     setTitleI MsgUsers
     $(widgetFile "users")
 
@@ -19,7 +19,7 @@ getUserR :: UserId -> Handler Html
 getUserR uid = do
   user <- runDB $ get404 uid
   ((_, formWidget), formEnctype) <- runFormPost $ editUserForm user
-  defaultLayout $ do
+  adminLayout $ do
     setTitleI MsgUser
     $(widgetFile "user")
 
@@ -65,14 +65,14 @@ editUserForm user extra = do
           <label .form-check-label>
             ^{fvInput superAdminView} ^{fvLabel superAdminView}
         <div .form-group>
-          <input type=submit .btn .btn-secondary .btn-block .btn-lg value=_{MsgSave}>
+          <input type=submit .btn .btn-secondary .btn-block value=_{MsgSave}>
       |]
   return (result, widget)
 
 getAddUserR :: Handler Html
 getAddUserR = do
   ((_, formWidget), formEnctype) <- runFormPost newUserForm
-  defaultLayout $ do
+  adminLayout $ do
     setTitleI MsgAddUser
     $(widgetFile "add-user")
 
@@ -122,6 +122,6 @@ newUserForm extra = do
           <label .form-check-label>
             ^{fvInput superAdminView} ^{fvLabel superAdminView}
         <div .form-group>
-          <input type=submit .btn .btn-secondary .btn-block .btn-lg value=_{MsgAddUser}>
+          <input type=submit .btn .btn-secondary .btn-block value=_{MsgAddUser}>
       |]
   return (result, widget)

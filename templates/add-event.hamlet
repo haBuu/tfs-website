@@ -1,5 +1,4 @@
 <div .container>
-  <form .m-t method=post action=@{AddEventR}#form enctype=#{formEnctype}>
+  <a .mt-1 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
+  <form .mt-1 method=post action=@{AddEventR}#form enctype=#{formEnctype}>
     ^{formWidget}
-
-  <a href=@{AdminR} .btn .btn-secondary .btn-block .btn-lg>_{MsgBack}

@@ -44,7 +44,7 @@ calendarWidget' currentDay events = [whamlet|
         <thead>
           <tr>
             <th #prev .arrow><
-            <th colspan=5>_{monthMsg $ month m} - #{show $ year m}
+            <th colspan=5>_{monthMsg $ month m} #{show $ year m}
             <th #next .arrow>>
           <tr>
             <th>_{MsgMondayShort}

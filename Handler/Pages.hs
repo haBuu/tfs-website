@@ -20,7 +20,7 @@ getPagesR = do
         time <- liftIO getCurrentTime
         pageId <- insert $ emptyPageMarkdown page time userId
         return (pageId, page)
-  defaultLayout $ do
+  adminLayout $ do
     setTitleI MsgPages
     $(widgetFile "pages")
 
@@ -28,7 +28,7 @@ getEditPageR :: PageMarkdownId -> Handler Html
 getEditPageR pageId = do
   Entity userId user <- requireAuth
   pageMarkdown <- runDB $ get404 pageId
-  defaultLayout $ do
+  adminLayout $ do
     setTitleI MsgEditPage
     addScript $ StaticR js_markdown_js
     let markdownPreview = $(widgetFile "markdown-preview")

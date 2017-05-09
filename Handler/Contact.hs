@@ -14,7 +14,6 @@ getContactR = do
   bagtag <- bagtagWidget
   content <- runDB $ getPageMarkdown Contact
   defaultLayout $ do
-    $(widgetFile "banner")
     let sidebar = $(widgetFile "sidebar")
     $(widgetFile "calendar")
     $(widgetFile "contact")

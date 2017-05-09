@@ -21,7 +21,7 @@ eventLimit = 20
 getEventsR :: Handler Html
 getEventsR = do
   events <- runDB $ selectList [] [Desc EventCreated, LimitTo eventLimit]
-  defaultLayout $ do
+  adminLayout $ do
     setTitleI MsgEditEvents
     mr <- getMessageRender
     $(widgetFile "drag-drop-image")
@@ -71,7 +71,7 @@ getAddEventR = do
   ((_, formWidget), formEnctype) <- runFormPost $ newEventForm uid time
   -- language for datepicker
   lang <- liftM language languages
-  defaultLayout $ do
+  adminLayout $ do
     setTitleI MsgAddEvent
     mr <- getMessageRender
     Datepicker.addDatepicker
@@ -104,7 +104,7 @@ getEditEventR eid = do
   ((_, formWidget), formEnctype) <- runFormPost $ editEventForm time event
   -- language for datepicker
   lang <- liftM language languages
-  defaultLayout $ do
+  adminLayout $ do
     setTitleI MsgEditEvent
     mr <- getMessageRender
     Datepicker.addDatepicker
@@ -173,7 +173,7 @@ newEventForm uid time extra = do
             <span .c-indicator>
             ^{fvLabel addPostView}
         <div .form-group>
-          <input type=submit .btn .btn-secondary .btn-block .btn-lg value=_{MsgAddEvent}>
+          <input type=submit .btn .btn-secondary .btn-block value=_{MsgAddEvent}>
       |]
   return (result, widget)
 
@@ -233,6 +233,6 @@ editEventForm time event extra = do
             <span .c-indicator>
             ^{fvLabel addPostView}
         <div .form-group>
-          <input type=submit .btn .btn-secondary .btn-block .btn-lg value=_{MsgSave}>
+          <input type=submit .btn .btn-secondary .btn-block value=_{MsgSave}>
       |]
   return (result, widget)

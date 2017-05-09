@@ -30,8 +30,6 @@ getHomePageR page = do
   calendar <- calendarWidget
   bagtag <- bagtagWidget
   defaultLayout $ do
-    setTitle "Tampereen Frisbeeseura"
-    $(widgetFile "banner")
     let sidebar = $(widgetFile "sidebar")
     $(widgetFile "calendar")
     $(widgetFile "home")

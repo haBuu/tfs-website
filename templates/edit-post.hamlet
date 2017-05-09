@@ -12,5 +12,5 @@
         #{unMarkdown $ postContent post}
     <div .form-group>
       <button #save type=submit .btn .btn-secondary .btn-block>_{MsgSave}
-  <button #delete-post data-url=@{PostR pid} .btn .btn-secondary .btn-block>_{MsgRemove}
+  <button .mb-1 #delete-post data-url=@{PostR pid} .btn .btn-secondary .btn-block>_{MsgRemove}
   ^{markdownPreview}

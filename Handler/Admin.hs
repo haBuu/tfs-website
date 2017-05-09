@@ -5,6 +5,6 @@ import Import
 getAdminR :: Handler Html
 getAdminR = do
   Entity _ user <- requireAuth
-  defaultLayout $ do
+  adminLayout $ do
     setTitleI MsgAdminPanel
     $(widgetFile "admin")

@@ -24,7 +24,6 @@ getClubR = do
   calendar <- calendarWidget
   bagtag <- bagtagWidget
   defaultLayout $ do
-    $(widgetFile "banner")
     let sidebar = $(widgetFile "sidebar")
     $(widgetFile "calendar")
     $(widgetFile "club")

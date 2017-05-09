@@ -1,11 +1,7 @@
 <div .container>
-
-  <div .m-t #event-delete-error .alert .alert-danger .alert-dismissible role=alert style="display: none;">
+  <a .mt-1 href=@{EventsR} .btn .btn-secondary .btn-block>_{MsgBack}
+  <div .mt-1 #event-delete-error .alert .alert-danger .alert-dismissible role=alert style="display: none;">
     _{MsgDeleteEventError}
-
-  <form .m-t method=post action=@{EventR eid}#form enctype=#{formEnctype}>
+  <form .mt-1 method=post action=@{EventR eid}#form enctype=#{formEnctype}>
     ^{formWidget}
-
-  <button #delete-event data-url=@{EventR eid} .m-t .btn .btn-danger .btn-block .btn-lg>_{MsgRemove}
-
-  <a .m-t href=@{EventsR} .btn .btn-secondary .btn-block .btn-lg>_{MsgBack}
+  <button #delete-event data-url=@{EventR eid} .btn .btn-secondary .btn-block>_{MsgRemove}
