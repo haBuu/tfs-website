@@ -62,7 +62,7 @@ bagtagWidget' :: [Player] -> Widget
 bagtagWidget' players = [whamlet|
   <div .card .mb-3>
     <h3 .card-header>
-      Bagtag
+      <a .bagtag-link href=https://dgmtrx.com/bagtag/?bagtag_id=6>Bagtag
     <div .card-block>
       <ol>
         $forall (Player _ mp) <- players

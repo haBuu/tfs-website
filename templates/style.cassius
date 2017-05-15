@@ -78,6 +78,6 @@ h2.post-title
 .small-image
   max-height: 60px
 
-a.post-link
+a.post-link, a.bagtag-link
   text-decoration: none
   color: inherit
