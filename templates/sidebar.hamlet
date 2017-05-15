@@ -5,7 +5,7 @@
     <a href=http://www.tampere.fi/ target=_blank>
       <img .mb-3 .img-fluid .mx-auto .d-block alt=http://www.tampere.fi/ title="Tampereen kaupunki" src=http://www.tampere.fi/images/tampere-logo-wide.gif>
     <div .row>
-      <div .offset-xs-2 .offset-md-2 .col-md-4 .col-xs-4>
+      <div .offset-xs-2 .offset-md-2 .col-md-4 .col-xs-4 .mb-2>
         <a href=https://www.facebook.com/groups/269964159713029/ target=_blank>
           <img .small-image .img-fluid .mx-auto .d-block alt=https://www.facebook.com/groups/269964159713029/ title=Facebook src=@{StaticR img_facebook_png}>
       <div .col-md-4 .col-xs-4>
