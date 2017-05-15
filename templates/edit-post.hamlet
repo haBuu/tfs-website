@@ -1,5 +1,5 @@
 <div .container>
-  <a .mt-1 href=@{PostsR} .btn .btn-secondary .btn-block>_{MsgBack}
+  <a .mt-3 href=@{PostsR} .btn .btn-secondary .btn-block>_{MsgBack}
   <div .mt-1 #post-delete-error .alert .alert-danger .alert-dismissible role=alert style="display: none;">
     _{MsgDeletePostError}
   <form .mt-1 method=post action=@{PostR pid}#form>

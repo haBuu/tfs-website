@@ -1,22 +1,18 @@
-<nav .navbar .navbar-light>
-  <div .container>
-    <a .navbar-brand href=@{HomeR}>
-      Tampereen Frisbeeseura
-    <button .float-xs-right .navbar-toggler .hidden-sm-up type=button data-toggle=collapse data-target=#navbar>
-      &#9776;
-    <div .collapse .navbar-toggleable-xs #navbar .float-xs-right>
-      <ul .nav .navbar-nav>
-        <li .nav-item>
-          <a .nav-link href=@{ClubR}>_{MsgNavClub}
-        <li .nav-item>
-          <a .nav-link href=@{CompaniesR}>_{MsgNavCompanies}
-        <li .nav-item>
-          <a .nav-link href=@{CoursesR}>_{MsgNavCourses}
-        <li .nav-item>
-          <a .nav-link href=@{CompetitionsR}>_{MsgNavWeeklyCompetitions}
-        <li .nav-item>
-          <a .nav-link href=@{ContactR}>_{MsgNavContact}
-        $maybe (Entity _ user) <- muser
-          $if userAdmin user
-            <li .nav-item>
-              <a .nav-link href=@{AdminR}>_{MsgNavAdmin}
+<nav .navbar .navbar-toggleable-md .navbar-light .bg-faded .fixed-top>
+
+  <button .navbar-toggler .navbar-toggler-right type=button data-toggle=collapse data-target=#navbar>
+    <span .navbar-toggler-icon>
+
+  <a .navbar-brand href=@{HomeR}>
+    Tampereen Frisbeeseura
+
+  <div .collapse .navbar-collapse .justify-content-md-center #navbar>
+    <div .navbar-nav>
+      <a .nav-item .nav-link href=@{ClubR}>_{MsgNavClub}
+      <a .nav-item .nav-link href=@{CompaniesR}>_{MsgNavCompanies}
+      <a .nav-item .nav-link href=@{CoursesR}>_{MsgNavCourses}
+      <a .nav-item .nav-link href=@{CompetitionsR}>_{MsgNavWeeklyCompetitions}
+      <a .nav-item .nav-link href=@{ContactR}>_{MsgNavContact}
+      $maybe (Entity _ user) <- muser
+        $if userAdmin user
+          <a .nav-item .nav-link href=@{AdminR}>_{MsgNavAdmin}

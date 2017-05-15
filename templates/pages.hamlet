@@ -1,5 +1,5 @@
 <div .container>
-  <a .mt-1 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
-  <div .mt-1 .btn-group .btn-group-vertical .btn-block>
+  <a .mt-3 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
+  <div .mt-3 .btn-group .btn-group-vertical .btn-block>
     $forall (pageId, pageName) <- pages
       <a href=@{EditPageR pageId} .btn .btn-secondary>_{pageMsg pageName}

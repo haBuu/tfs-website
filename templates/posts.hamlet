@@ -1,16 +1,15 @@
 <div .container>
 
-  <a .mt-1 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
+  <a .mt-3 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
 
-  <div .mt-1 .card .card-inverse>
-    <div .card-primary .card-header>_{MsgPosts}
-    <ul #posts .list-group .list-group-flush>
-      $forall (Entity pid post, Entity _ user) <- posts
-        <a .list-group-item .list-group-item-action href=@{EditPostR pid}>
-          <h5 .list-group-item-heading>
-            #{postTitle post}
-          <p .text-muted .list-group-item-text>
-            #{showTime tz $ postCreated post}, #{userName user}
-          $maybe modified <- postModified post
-            <p .text-muted .list-group-item-text>
-              #{showTime tz modified}, #{userName user}
+  <h3 .mt-3>_{MsgPosts}
+  <div .list-group>
+    $forall (Entity pid post, Entity _ user) <- posts
+      <a href=@{EditPostR pid} .list-group-item .list-group-item-action .flex-column .align-items-start>
+        <div .d-flex .w-100 .justify-content-between>
+          <h5 .mb-1>#{postTitle post}
+        <small .text-muted>
+          #{showTime tz $ postCreated post}, #{userName user}
+        $maybe modified <- postModified post
+          <small .text-muted>
+            #{showTime tz modified}, #{userName user}

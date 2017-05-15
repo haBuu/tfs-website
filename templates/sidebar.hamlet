@@ -1,4 +1,4 @@
-<div .col-md-4 .mt-3 .px-1>
+<div .col-md-3 .mt-3 .px-1>
   ^{calendar}
 
   <div #partners .my-3>

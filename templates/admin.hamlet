@@ -1,5 +1,5 @@
 <div .container>
-  <div .mt-1 .btn-group .btn-group-vertical .btn-block>
+  <div .mt-3 .btn-group .btn-group-vertical .btn-block>
     <a href=@{AddPostR} .btn .btn-secondary>_{MsgAddPost}
     <a href=@{PostsR} .btn .btn-secondary>_{MsgEditPosts}
     <a href=@{AddEventR} .btn .btn-secondary>_{MsgAddEvent}

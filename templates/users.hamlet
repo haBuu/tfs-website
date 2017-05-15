@@ -1,5 +1,5 @@
 <div .container>
-  <a .mt-1 href=@{AddUserR} .btn .btn-secondary .btn-block>_{MsgAddUser}
+  <a .mt-3 href=@{AddUserR} .btn .btn-secondary .btn-block>_{MsgAddUser}
   <a .mt-1 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
 
   <div .mt-1  .card .card-inverse>

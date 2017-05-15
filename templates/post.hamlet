@@ -1,12 +1,13 @@
 <div .container>
-  <div .col-md-8 .mt-3>
-    <div .posts>
-      <div .post .mb-2>
-        <h2 .post-title>#{postTitle post}
-        <small .post-created .text-muted>
-          #{showTime tz $ postCreated post}
-          $maybe modified <- postModified post
-            , _{MsgModified} #{showTime tz modified}
-        <div .mt-1>
-          #{postContent post}
-  ^{sidebar}
+  <div .row>
+    <div .col-md-9 .mt-3>
+      <div .posts>
+        <div .post .mb-2>
+          <h2 .post-title>#{postTitle post}
+          <small .post-created .text-muted>
+            #{showTime tz $ postCreated post}
+            $maybe modified <- postModified post
+              , _{MsgModified} #{showTime tz modified}
+          <div .mt-1>
+            #{postContent post}
+    ^{sidebar}

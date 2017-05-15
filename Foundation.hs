@@ -78,9 +78,9 @@ instance Yesod App where
     -- value passed to hamletToRepHtml cannot be a widget, this allows
     -- you to use normal widget features in default-layout.
     pc <- widgetToPageContent $ do
-      addStylesheetRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css"
+      addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
       addScriptRemote "//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-      addScriptRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"
+      addScriptRemote "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
       $(widgetFile "style")
       $(widgetFile "header")
       $(widgetFile "banner")
@@ -259,9 +259,9 @@ adminLayout widget = do
   mmsg <- getMessage
   muser <- maybeAuth
   pc <- widgetToPageContent $ do
-    addStylesheetRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css"
+    addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
     addScriptRemote "//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-    addScriptRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"
+    addScriptRemote "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
     $(widgetFile "style")
     $(widgetFile "header")
     $(widgetFile "message")

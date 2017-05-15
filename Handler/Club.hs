@@ -13,6 +13,8 @@ import Forms
 import Helpers
 import Calendar
 import Members
+import Model.Page
+import Model.PageMarkdown
 
 getClubR :: Handler Html
 getClubR = do
@@ -23,6 +25,7 @@ getClubR = do
       formYears = [1900..fromIntegral year]
   calendar <- calendarWidget
   bagtag <- bagtagWidget
+  content <- runDB $ getPageMarkdown Club
   defaultLayout $ do
     let sidebar = $(widgetFile "sidebar")
     $(widgetFile "calendar")

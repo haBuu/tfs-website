@@ -1,45 +1,46 @@
 <div .container>
-  <div .col-md-8 .mt-3>
-    <div .posts>
-      $forall Entity pid post <- posts
-        <div .post .mb-2>
-          <h2 .post-title>
-            <a .post-link href=@{OnePostR pid}>
-              #{postTitle post}
-          <small .post-created .text-muted>
-            #{showTime tz $ postCreated post}
-            $maybe modified <- postModified post
-              , _{MsgModified} #{showTime tz modified}
-          <div .mt-1>
-            #{postContent post}
-        <hr>
+  <div .row>
+    <div .col-md-9 .mt-3>
+      <div .posts>
+        $forall Entity pid post <- posts
+          <div .post .mb-2>
+            <h2 .post-title>
+              <a .post-link href=@{OnePostR pid}>
+                #{postTitle post}
+            <small .post-created .text-muted>
+              #{showTime tz $ postCreated post}
+              $maybe modified <- postModified post
+                , _{MsgModified} #{showTime tz modified}
+            <div .mt-1>
+              #{postContent post}
+          <hr>
 
-    $if pages > 1
-      <nav aria-label=Page navigation>
-        <ul .pagination>
-          $if page /= 1
-            <li .page-item>
-              $if page == 2
-                <a .page-link href=@{HomeR} aria-label=Previous>
-                  <span aria-hidden=true>&laquo;
-                  <span .sr-only>Previous
+      $if pages > 1
+        <nav aria-label=Page navigation>
+          <ul .pagination>
+            $if page /= 1
+              <li .page-item>
+                $if page == 2
+                  <a .page-link href=@{HomeR} aria-label=Previous>
+                    <span aria-hidden=true>&laquo;
+                    <span .sr-only>Previous
+                $else
+                  <a .page-link href=@{HomePageR (page - 1)} aria-label=Previous>
+                    <span aria-hidden=true>&laquo;
+                    <span .sr-only>Previous
+
+            $forall i <- pageLinks page pages
+              $if i == 1
+                <li .page-item :(page == i):.active>
+                  <a .page-link href=@{HomeR}>#{show i}
               $else
-                <a .page-link href=@{HomePageR (page - 1)} aria-label=Previous>
-                  <span aria-hidden=true>&laquo;
-                  <span .sr-only>Previous
+                <li .page-item :(page == i):.active>
+                  <a .page-link href=@{HomePageR i}>#{show i}
 
-          $forall i <- pageLinks page pages
-            $if i == 1
-              <li .page-item :(page == i):.active>
-                <a .page-link href=@{HomeR}>#{show i}
-            $else
-              <li .page-item :(page == i):.active>
-                <a .page-link href=@{HomePageR i}>#{show i}
+            $if page < pages
+              <li .page-item>
+                <a .page-link href=@{HomePageR (page + 1)} aria-label=Next>
+                  <span aria-hidden=true>&raquo;
+                  <span .sr-only>Next
 
-          $if page < pages
-            <li .page-item>
-              <a .page-link href=@{HomePageR (page + 1)} aria-label=Next>
-                <span aria-hidden=true>&raquo;
-                <span .sr-only>Next
-
-  ^{sidebar}
+    ^{sidebar}

@@ -60,7 +60,7 @@ bagtagWidget = do
 
 bagtagWidget' :: [Player] -> Widget
 bagtagWidget' players = [whamlet|
-  <div .card>
+  <div .card .mb-3>
     <h3 .card-header>
       Bagtag
     <div .card-block>

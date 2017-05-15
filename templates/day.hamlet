@@ -1,12 +1,13 @@
 <div .container>
-  <div .col-sm-8 .mt-3>
-    <div #events>
-      $forall Entity _ event <- events
-        <div .event>
-          <h1 .event-title>#{eventTitle event}
-          <small .post-created .text-muted>
-            #{showTime tz $ eventCreated event}
-            $maybe modified <- eventModified event
-              , _{MsgModified} #{showTime tz modified}
-          <p .m-t .post-content>#{eventContent event}
-  ^{sidebar}
+  <div .row>
+    <div .col-md-9 .mt-3>
+      <div #events>
+        $forall Entity _ event <- events
+          <div .event>
+            <h1 .event-title>#{eventTitle event}
+            <small .post-created .text-muted>
+              #{showTime tz $ eventCreated event}
+              $maybe modified <- eventModified event
+                , _{MsgModified} #{showTime tz modified}
+            <p .m-t .post-content>#{eventContent event}
+    ^{sidebar}

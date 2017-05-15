@@ -1,5 +1,6 @@
 body
   font-family: Lato, "Source Sans Pro", Arial, sans-serif
+  padding-top: 56px
 
 nav.navbar
   background-color: #ffffff
@@ -27,13 +28,6 @@ div#banner
   position: absolute
   top: 10px
   left: 20px
-
-.image22
-  position: absolute
-  top: 10px
-  left: 350px
-  height: 300px
-  text-align: left
 
 table#calendar
   text-align: center
