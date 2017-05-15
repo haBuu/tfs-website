@@ -1,5 +1,5 @@
 <div .container>
-  <a .mt-1 href=@{EventsR} .btn .btn-secondary .btn-block>_{MsgBack}
+  <a .mt-3 href=@{EventsR} .btn .btn-secondary .btn-block>_{MsgBack}
   <div .mt-1 #event-delete-error .alert .alert-danger .alert-dismissible role=alert style="display: none;">
     _{MsgDeleteEventError}
   <form .mt-1 method=post action=@{EventR eid}#form enctype=#{formEnctype}>

@@ -1,10 +1,10 @@
 <div .container>
 
-  <a .mt-1 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
+  <a .mt-3 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
 
-  <div .mt-1 .card .card-inverse>
-    <div .card-primary .card-header>_{MsgEvents}
-    <ul #events .list-group .list-group-flush>
-      $forall Entity eid event <- events
-        <a .list-group-item .list-group-item-action href=@{EditEventR eid}>
-          #{eventTitle event}
+  <h3 .mt-3>_{MsgEvents}
+  <div .list-group>
+    $forall Entity eid event <- events
+      <a href=@{EditEventR eid} .list-group-item .list-group-item-action .flex-column .align-items-start>
+        <div .d-flex .w-100 .justify-content-between>
+          <h5 .mb-1>#{eventTitle event}
