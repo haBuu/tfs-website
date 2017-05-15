@@ -29,7 +29,7 @@ getClubR = do
   let formDays, formMonths, formYears :: [Int]
       formDays = [1..31]
       formMonths = [1..12]
-      formYears = [1900..fromIntegral year]
+      formYears = [1915..fromIntegral year]
       juniorLimit = year - 18
   calendar <- calendarWidget
   bagtag <- bagtagWidget
@@ -219,7 +219,7 @@ monthOptions :: [(Text, Int)]
 monthOptions = map (\m -> (tshow m, m)) [1..12]
 
 yearOptions :: Integer -> [(Text, Int)]
-yearOptions year = map (\y -> (tshow y, y)) [1900..fromIntegral year]
+yearOptions year = map (\y -> (tshow y, y)) [1915..fromIntegral year]
 
 sexOptions :: [(Text, Sex)]
 sexOptions = [("male", Male), ("female", Female)]
