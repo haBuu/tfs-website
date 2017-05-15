@@ -8,6 +8,7 @@ import Forms
 
 getClubMembersR :: Handler Html
 getClubMembersR = do
+  notFound
   ((_, formWidget), formEnctype) <- runFormPost memberForm
   members <- runDB $ selectList [] [Desc ClubMemberName]
   defaultLayout $ do
@@ -16,6 +17,7 @@ getClubMembersR = do
 
 postClubMembersR :: Handler Html
 postClubMembersR = do
+  notFound
   ((result, _), _) <- runFormPost memberForm
   formHandler result $ \member -> do
     runDB $ insert_ member
@@ -24,6 +26,7 @@ postClubMembersR = do
 
 deleteClubMemberR :: ClubMemberId -> Handler Html
 deleteClubMemberR mid = do
+  notFound
   runDB $ delete mid
   redirect ClubMembersR
 
