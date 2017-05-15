@@ -3,7 +3,6 @@
     <div .col-md-9 .mt-3>
       <div #content>
         #{content}
-
       <form #join-form .m-b-lg method=post action=@{ClubR}>
         <div .form-group>
           <label>_{MsgFirstName} *
@@ -55,51 +54,43 @@
         <div .form-group>
           <label>_{MsgPDGANumber} (jos sinulla on)
           <input name=pdga type=number placeholder=_{MsgPDGANumber} .form-control>
-        <div .form-group>
-          <label>Jäsenmaksu *
-          <div .c-inputs-stacked>
-            <label .c-input .c-radio>
-              <input #membership data-sum=15 name=membership type=radio value=1 required>
-              <span .c-indicator>
-              Jäsenmaksu, aikuinen 15€
-            <label .c-input .c-radio>
-              <input #membership data-sum=5 name=membership type=radio value=2 required>
-              <span .c-indicator>
-              Jäsenmaksu, juniori 5€ (1997 tai myöhemmin syntyneet)
-        <div .form-group>
-          <label>Vapaahtoiset lisenssit
-          <div .c-inputs-stacked>
-            <label .c-input .c-radio>
-              <input #license data-sum=0 name=license value=1 type=radio>
-              <span .c-indicator>
-              Ei lisenssiä
-            <label .c-input .c-radio>
-              <input #license data-sum=55 name=license value=2 type=radio>
-              <span .c-indicator>
-              A-lisenssi, aikuinen 55€
-            <label .c-input .c-radio>
-              <input #license data-sum=30 name=license value=2 type=radio>
-              <span .c-indicator>
-              A-lisenssi, juniori 30€
-            <label .c-input .c-radio>
-              <input #license data-sum=20 name=license value=3 type=radio>
-              <span .c-indicator>
-              B-lisenssi, aikuinen 20€
-            <label .c-input .c-radio>
-              <input #license data-sum=10 name=license value=3 type=radio>
-              <span .c-indicator>
-              B-lisenssi, juniori 10€
-        <label>Lisätilaukset (molemmat lisätilaukset edellyttävät A-lisenssiä)
-        <div .form-group>
-          <label .c-input .c-checkbox>
-            <input #disc data-sum=10 name=disc type=checkbox>
-            <span .c-indicator>
-            PDGA-jäsenkiekko (vain uudet jäsenet) 10€
-        <div .form-group>
-          <label .c-input .c-checkbox>
-            <input #magazine data-sum=30 name=magazine type=checkbox>
-            <span .c-indicator>
-            PDGA Discgolfer-lehti 30€
+        <fieldset .form-group row>
+          <legend .col-form-legend>
+            Jäsenmaksu *
+          <div .form-check>
+            <label .form-check-label>
+              <input .form-check-input type=radio name=membership #membership value=1 data-sum=#{show membershipAdult} required>
+              Jäsenmaksu, aikuinen #{show membershipAdult} €
+          <div .form-check>
+            <label .form-check-label>
+              <input .form-check-input type=radio name=membership #membership value=2 data-sum=#{show membershipJunior} required>
+              Jäsenmaksu, juniori #{show membershipJunior} € (#{show juniorLimit} tai myöhemmin syntyneet)
+        <fieldset .form-group row>
+          <legend .col-form-legend>
+            Vapaaehtoinen kilpailulisenssi
+          <div .form-check>
+            <label .form-check-label>
+              <input .form-check-input type=radio name=license #license value=1 data-sum=0 checked>
+              Ei kilpailulisenssiä
+          <div .form-check>
+            <label .form-check-label>
+              <input .form-check-input type=radio name=license #license value=2 data-sum=#{show pdgaLicenseAdult}>
+              Aikuinen #{show pdgaLicenseAdult} €
+          <div .form-check>
+            <label .form-check-label>
+              <input .form-check-input type=radio name=license #license value=3 data-sum=#{show pdgaLicenseJunior}>
+              Juniori #{show pdgaLicenseJunior} €
+        <fieldset .form-group row>
+          <legend .col-form-legend>
+            Lisätilaukset (molemmat lisätilaukset edellyttävät kilpailulisenssiä)
+          <div .form-check>
+            <label .form-check-label>
+              <input .form-check-input #disc data-sum=#{show pdgaDisc} name=disc type=checkbox disabled>
+              PDGA-jäsenkiekko (vain uudet jäsenet) #{show pdgaDisc} €
+          <div .form-check>
+            <label .form-check-label>
+              <input #magazine data-sum=#{show pdgaMagazine} .form-check-input name=magazine type=checkbox disabled>
+              PDGA Discgolfer-lehti #{show pdgaMagazine} €
         <p .text-muted>
           Yhteensä:
           <span #sum>0
@@ -110,6 +101,6 @@
         <p .text-muted>
           Lähettämällä yllä olevan lomakkeen suostut tietojesi tallentamiseen Suomen Frisbeeliiton
           ja Tampereen Frisbeeseuran jäsenrekistereihin.
-        <div .form-group>
+        <div .form-group .mb-5>
           <input type=submit .btn .btn-secondary .btn-block .btn-lg value=_{MsgSend}>
     ^{sidebar}

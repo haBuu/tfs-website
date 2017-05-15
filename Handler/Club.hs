@@ -16,6 +16,13 @@ import Members
 import Model.Page
 import Model.PageMarkdown
 
+pdgaDisc = 15
+pdgaMagazine = 35
+pdgaLicenseAdult = 50
+pdgaLicenseJunior = 25
+membershipAdult = 15
+membershipJunior = 5
+
 getClubR :: Handler Html
 getClubR = do
   (year, _, _) <- liftM (toGregorian . utctDay) $ liftIO getCurrentTime
@@ -23,6 +30,7 @@ getClubR = do
       formDays = [1..31]
       formMonths = [1..12]
       formYears = [1900..fromIntegral year]
+      juniorLimit = year - 18
   calendar <- calendarWidget
   bagtag <- bagtagWidget
   content <- runDB $ getPageMarkdown Club
@@ -33,6 +41,7 @@ getClubR = do
 
 postClubR :: Handler Html
 postClubR = do
+  (year, _, _) <- liftM (toGregorian . utctDay) $ liftIO getCurrentTime
   result <- runInputPost $ Member
     <$> ireq textField "firstname"
     <*> ireq textField "lastname"
@@ -44,7 +53,7 @@ postClubR = do
     <*> ireq (radioFieldList sexOptions) "sex"
     <*> ireq (selectFieldList dayOptions) "day"
     <*> ireq (selectFieldList monthOptions) "month"
-    <*> ireq (selectFieldList yearOptions) "year"
+    <*> ireq (selectFieldList $ yearOptions year) "year"
     <*> iopt intField "pdga"
     <*> ireq (radioFieldList membershipOptions) "membership"
     <*> ireq (radioFieldList licenseOptions) "license"
@@ -125,7 +134,7 @@ sendJoinMail member@Member {..} = do
             #{dobDay}.#{dobMonth}.#{dobYear}
             #{showPdga mpdga}
             #{showMembership membership}
-            #{showLicense membership license}
+            #{showLicense license}
             $if disc
               Jäsenkiekko: Kyllä
             $else
@@ -153,12 +162,10 @@ showMembership :: Membership -> String
 showMembership Adult = "Jäsenmaksu, aikuinen"
 showMembership Junior = "Jäsenmaksu, juniori"
 
-showLicense :: Membership -> License -> String
-showLicense _ NoLicense = "Ei lisenssiä"
-showLicense Adult A = "A-lisenssi, aikuinen"
-showLicense Adult B = "B-lisenssi, aikuinen"
-showLicense Junior A = "A-lisenssi, juniori"
-showLicense Junior B = "B-lisenssi, juniori"
+showLicense :: License -> String
+showLicense NoLicence = "Ei kilpailulisenssiä"
+showLicense PDGA_Adult = "Kilpailulisenssi, aikuinen"
+showLicense PDGA_Junior = "Kilpailulisenssi, juniori"
 
 showPdga :: Maybe Int -> String
 showPdga Nothing = "PDGA-numero: -"
@@ -189,22 +196,20 @@ data Member = Member
 
 countSum :: Member -> Int
 countSum Member {..} =
-  (msSum membership) + (licenseSum membership license) + (discSum disc) + (magazineSum magazine)
+  (msSum membership) + (licenseSum license) + (discSum disc) + (magazineSum magazine)
   where
     msSum :: Membership -> Int
-    msSum Adult = 15
-    msSum Junior = 5
-    licenseSum :: Membership -> License -> Int
-    licenseSum _ NoLicense = 0
-    licenseSum Adult A = 55
-    licenseSum Adult B = 20
-    licenseSum Junior A = 30
-    licenseSum Junior B = 10
+    msSum Adult = membershipAdult
+    msSum Junior = membershipJunior
+    licenseSum :: License -> Int
+    licenseSum NoLicence = 0
+    licenseSum PDGA_Adult = pdgaLicenseAdult
+    licenseSum PDGA_Junior = pdgaLicenseJunior
     discSum :: Bool -> Int
-    discSum True = 10
+    discSum True = pdgaDisc
     discSum False = 0
     magazineSum :: Bool -> Int
-    magazineSum True = 30
+    magazineSum True = pdgaMagazine
     magazineSum False = 0
 
 dayOptions :: [(Text, Int)]
@@ -213,8 +218,8 @@ dayOptions = map (\d -> (tshow d, d)) [1..31]
 monthOptions :: [(Text, Int)]
 monthOptions = map (\m -> (tshow m, m)) [1..12]
 
-yearOptions :: [(Text, Int)]
-yearOptions = map (\y -> (tshow y, y)) [1915..2015]
+yearOptions :: Integer -> [(Text, Int)]
+yearOptions year = map (\y -> (tshow y, y)) [1900..fromIntegral year]
 
 sexOptions :: [(Text, Sex)]
 sexOptions = [("male", Male), ("female", Female)]
@@ -224,11 +229,9 @@ membershipOptions = [("adult", Adult), ("junior", Junior)]
 
 licenseOptions :: [(Text, License)]
 licenseOptions =
-  [ ("no-license", NoLicense)
-  , ("adult", A)
-  , ("junior", A)
-  , ("adult", B)
-  , ("junior", B)
+  [ ("no-licence", NoLicence)
+  , ("adult", PDGA_Adult)
+  , ("junior", PDGA_Junior)
   ]
 
 data Sex = Male | Female
@@ -237,7 +240,7 @@ data Sex = Male | Female
 data Membership = Adult | Junior
   deriving (Show, Eq)
 
-data License = NoLicense | A | B
+data License = NoLicence | PDGA_Adult | PDGA_Junior
   deriving (Show, Eq)
 
 -- bot checking

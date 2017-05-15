@@ -4,14 +4,12 @@
   var sumContainer = joinForm.find('span#sum');
   var sum = 0;
 
-  joinForm.find('input:checkbox').attr('disabled', true);
-
   joinForm.find('input:checkbox, input:radio').on('change', function() {
     updateSum();
   });
 
   joinForm.find('input#license').on('change', function(e) {
-    if ($(this).val() == 2) {
+    if ($(this).val() > 1) {
       joinForm.find('input:checkbox').attr('disabled', false);
     } else {
       joinForm.find('input:checkbox').attr('disabled', true);
@@ -41,7 +39,7 @@
     sumContainer.text(sum);
   }
 
-  if ( document.createElement("input").placeholder == undefined ) {
+  if (document.createElement("input").placeholder == undefined) {
     $('input#check').text('Paljonko on yhdeksän miinus neljä?');
   }
 
