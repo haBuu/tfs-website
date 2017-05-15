@@ -1,5 +1,6 @@
 <div .container>
-  <form .mt-1 method=post enctype=#{formEnctype}>
+
+  <form .mt-3 method=post enctype=#{formEnctype}>
     ^{formWidget}
 
   <a .mt-1 href=@{UsersR} .btn .btn-secondary .btn-block>_{MsgCancel}

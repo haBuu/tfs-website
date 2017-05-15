@@ -75,8 +75,6 @@ bagtagWidget' players = [whamlet|
 
 membersWidget :: Handler Widget
 membersWidget = do
-  players <- liftIO getBagtagPlayers
-  liftIO $ print players
   members <- runDB $ selectList
     [ ClubMemberName !=. Nothing
     , ClubMemberRating !=. Nothing

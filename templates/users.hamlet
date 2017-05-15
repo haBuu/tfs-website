@@ -1,9 +1,10 @@
 <div .container>
-  <a .mt-3 href=@{AddUserR} .btn .btn-secondary .btn-block>_{MsgAddUser}
-  <a .mt-1 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
+  <a .mt-3 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
+  <a .mt-1 href=@{AddUserR} .btn .btn-secondary .btn-block>_{MsgAddUser}
 
-  <div .mt-1  .card .card-inverse>
-    <div .card-primary .card-header>_{MsgUsers} (#{length users})
-    <ul .list-group .list-group-flush>
-      $forall Entity uid user <- users
-        <a href=@{UserR uid} .list-group-item .list-group-item-action>#{userName user}
+  <h3 .mt-3>_{MsgUsers} (#{length users})
+  <div .list-group>
+    $forall Entity uid user <- users
+      <a href=@{UserR uid} .list-group-item .list-group-item-action .flex-column .align-items-start>
+        <div .d-flex .w-100 .justify-content-between>
+          <h5 .mb-1>#{userName user}
