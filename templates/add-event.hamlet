@@ -1,4 +1,4 @@
 <div .container>
-  <a .mt-3 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
-  <form .mt-1 method=post action=@{AddEventR}#form enctype=#{formEnctype}>
+  <a .mt-3 href=@{AdminR} .btn .btn-light .btn-block>_{MsgBack}
+  <form .mt-3 method=post action=@{AddEventR}#form enctype=#{formEnctype}>
     ^{formWidget}

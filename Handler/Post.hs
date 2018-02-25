@@ -3,7 +3,6 @@ module Handler.Post where
 import Import
 
 import Yesod.Markdown
-import Yesod.Form.Bootstrap3
 import Data.Time.LocalTime
 import Text.Julius(rawJS)
 
@@ -40,7 +39,6 @@ getPostsR = do
 
 getAddPostR :: Handler Html
 getAddPostR = do
-  uid <- requireAuthId
   adminLayout $ do
     setTitleI MsgAddPost
     mr <- getMessageRender

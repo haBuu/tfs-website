@@ -1,11 +1,11 @@
 <div .container>
-  <div .mt-3 .btn-group .btn-group-vertical .btn-block>
-    <a href=@{AddPostR} .btn .btn-secondary>_{MsgAddPost}
-    <a href=@{PostsR} .btn .btn-secondary>_{MsgEditPosts}
-    <a href=@{AddEventR} .btn .btn-secondary>_{MsgAddEvent}
-    <a href=@{EventsR} .btn .btn-secondary>_{MsgEditEvents}
-    <a href=@{PagesR} .btn .btn-secondary>_{MsgPages}
-    <a href=https://www.suomisport.fi/ .btn .btn-secondary>_{MsgClubMembers} (Suomisport)
+  <div .mt-3 .list-group>
+    <a href=@{AddPostR} .list-group-item .list-group-item-action>_{MsgAddPost}
+    <a href=@{PostsR} .list-group-item .list-group-item-action>_{MsgEditPosts}
+    <a href=@{AddEventR} .list-group-item .list-group-item-action>_{MsgAddEvent}
+    <a href=@{EventsR} .list-group-item .list-group-item-action>_{MsgEditEvents}
+    <a href=@{PagesR} .list-group-item .list-group-item-action>_{MsgPages}
+    <a href=https://www.suomisport.fi/ .list-group-item .list-group-item-action>_{MsgClubMembers} (Suomisport)
     $if userSuperAdmin user
-      <a href=@{UsersR} .btn .btn-secondary>_{MsgUsers}
-    <a href=@{AuthR LogoutR} .btn .btn-secondary>_{MsgLogout}
+      <a href=@{UsersR} .list-group-item .list-group-item-action>_{MsgUsers}
+    <a href=@{AuthR LogoutR} .list-group-item .list-group-item-action>_{MsgLogout}

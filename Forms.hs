@@ -17,7 +17,7 @@ formHandler result f =
 
 -- default submit button
 submitButton :: a -> BootstrapSubmit a
-submitButton msg = BootstrapSubmit msg "btn btn-secondary btn-block btn-lg" []
+submitButton msg = BootstrapSubmit msg "btn btn-light btn-block btn-lg" []
 
 withRows :: Text -> FieldSettings site -> FieldSettings site
 withRows n fs = fs { fsAttrs = newAttrs }

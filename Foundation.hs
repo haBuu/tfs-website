@@ -239,7 +239,7 @@ unsafeHandler = Unsafe.fakeHandlerGetLogger appLogger
 myLoginForm :: Route App -> Widget
 myLoginForm action = do
   [whamlet|
-    <div .container .mt-1>
+    <div .container .mt-3>
       <form method=post action=@{action}>
         <fieldset .form-group>
           <label>_{MsgName}
@@ -248,7 +248,7 @@ myLoginForm action = do
           <label>_{MsgPassword}
           <input type=password name=password .form-control placeholder=_{MsgPassword}>
         <fieldset .form-group>
-          <button type=submit .btn .btn-secondary .btn-block>_{MsgLogin}
+          <button type=submit .btn .btn-light .btn-block>_{MsgLogin}
   |]
 
 adminLayout :: Widget -> Handler Html
@@ -257,9 +257,9 @@ adminLayout widget = do
   mmsg <- getMessage
   muser <- maybeAuth
   pc <- widgetToPageContent $ do
-    addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-    addScriptRemote "//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-    addScriptRemote "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+    addStylesheetRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    addScriptRemote "//code.jquery.com/jquery-3.2.1.slim.min.js"
+    addScriptRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     $(widgetFile "style")
     $(widgetFile "header")
     $(widgetFile "message")

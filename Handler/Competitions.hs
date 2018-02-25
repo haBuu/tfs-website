@@ -2,7 +2,6 @@ module Handler.Competitions where
 
 import Import
 
-import Helpers
 import Calendar
 import Members
 import Model.Page

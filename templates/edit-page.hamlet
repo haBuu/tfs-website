@@ -1,20 +1,20 @@
 <div .container .mt-1>
-  <a .mb-1 .my-3 href=@{PagesR} .btn .btn-secondary .btn-block>_{MsgBack}
+  <a .mb-1 .my-3 href=@{PagesR} .btn .btn-light .btn-block>_{MsgBack}
   <h1>_{pageMsg $ pageMarkdownPage pageMarkdown}
   <form method=post action=@{EditPageR pageId}#form>
     <div .form-group>
       <textarea .form-control #markdown name=markdown rows=20 oninput=this.editor.update()>
         #{unMarkdown $ pageMarkdownContent pageMarkdown}
     <div .form-group>
-      <button #save type=submit .btn .btn-secondary .btn-block>_{MsgSave}
-  <button .mb-3 #reset type=button .btn .btn-secondary .btn-block>_{MsgResetOriginal}
+      <button #save type=submit .btn .btn-light .btn-block>_{MsgSave}
+  <button .mb-3 #reset type=button .btn .btn-light .btn-block>_{MsgResetOriginal}
   ^{markdownPreview}
 
-  <h4>_{MsgOldVersions}
+  <h4>_{MsgVersionHistory}
   <div .list-group .mb-3>
-    $forall (Entity pid page) <- versions
+    $forall ((Entity pid page), (Entity _ user)) <- versions
       <a href=@{EditPageR pid} .list-group-item .list-group-item-action .flex-column .align-items-start>
         <div .d-flex .w-100 .justify-content-between>
-          <h5 .mb-1>_{MsgVersion} #{pageMarkdownVersion page}
+          <h5>_{MsgVersion} #{pageMarkdownVersion page}
           <small .text-muted>
-            #{show $ pageMarkdownUser page}, #{showTime tz $ pageMarkdownCreated page}
+            #{showTime tz $ pageMarkdownCreated page}, #{userName user}

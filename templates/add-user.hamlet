@@ -2,4 +2,4 @@
   <form .mt-3 method=post action=@{AddUserR}#form enctype=#{formEnctype}>
     ^{formWidget}
 
-  <a href=@{UsersR} .btn .btn-secondary .btn-block>_{MsgBack}
+  <a href=@{UsersR} .btn .btn-light .btn-block>_{MsgBack}

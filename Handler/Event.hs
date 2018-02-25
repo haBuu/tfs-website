@@ -173,7 +173,7 @@ newEventForm uid time extra = do
             <span .c-indicator>
             ^{fvLabel addPostView}
         <div .form-group>
-          <input type=submit .btn .btn-secondary .btn-block value=_{MsgAddEvent}>
+          <input type=submit .btn .btn-light .btn-block value=_{MsgAddEvent}>
       |]
   return (result, widget)
 
@@ -233,6 +233,6 @@ editEventForm time event extra = do
             <span .c-indicator>
             ^{fvLabel addPostView}
         <div .form-group>
-          <input type=submit .btn .btn-secondary .btn-block value=_{MsgSave}>
+          <input type=submit .btn .btn-light .btn-block value=_{MsgSave}>
       |]
   return (result, widget)

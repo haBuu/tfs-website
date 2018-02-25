@@ -1,8 +1,8 @@
 <div .container>
-  <a .mt-3 href=@{PostsR} .btn .btn-secondary .btn-block>_{MsgBack}
-  <div .mt-1 #post-delete-error .alert .alert-danger .alert-dismissible role=alert style="display: none;">
+  <a .mt-3 href=@{PostsR} .btn .btn-light .btn-block>_{MsgBack}
+  <div .mt-3 #post-delete-error .alert .alert-danger .alert-dismissible role=alert style="display: none;">
     _{MsgDeletePostError}
-  <form .mt-1 method=post action=@{PostR pid}#form>
+  <form .mt-3 method=post action=@{PostR pid}#form>
     <div .form-group>
       <label for=title>Otsikko
       <input type=text .form-control #title name=title placeholder=Otsikko value=#{postTitle post}>
@@ -11,6 +11,6 @@
       <textarea .form-control #markdown name=markdown placeholder=Uutinen rows=20 required oninput=this.editor.update()>
         #{unMarkdown $ postContent post}
     <div .form-group>
-      <button #save type=submit .btn .btn-secondary .btn-block>_{MsgSave}
-  <button .mb-1 #delete-post data-url=@{PostR pid} .btn .btn-secondary .btn-block>_{MsgRemove}
+      <button #save type=submit .btn .btn-light .btn-block>_{MsgSave}
+  <button .mb-3 #delete-post data-url=@{PostR pid} .btn .btn-light .btn-block>_{MsgRemove}
   ^{markdownPreview}

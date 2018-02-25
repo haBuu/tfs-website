@@ -64,8 +64,8 @@ editUserForm user extra = do
         <div .form-check>
           <label .form-check-label>
             ^{fvInput superAdminView} ^{fvLabel superAdminView}
-        <div .form-group>
-          <input type=submit .btn .btn-secondary .btn-block value=_{MsgSave}>
+        <div .form-group .mt-3>
+          <input type=submit .btn .btn-light .btn-block value=_{MsgSave}>
       |]
   return (result, widget)
 
@@ -121,7 +121,7 @@ newUserForm extra = do
         <div .form-check>
           <label .form-check-label>
             ^{fvInput superAdminView} ^{fvLabel superAdminView}
-        <div .form-group>
-          <input type=submit .btn .btn-secondary .btn-block value=_{MsgAddUser}>
+        <div .form-group .mt-3>
+          <input type=submit .btn .btn-light .btn-block value=_{MsgAddUser}>
       |]
   return (result, widget)

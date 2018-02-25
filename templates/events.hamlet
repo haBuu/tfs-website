@@ -1,6 +1,6 @@
 <div .container>
 
-  <a .mt-3 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
+  <a .mt-3 href=@{AdminR} .btn .btn-light .btn-block>_{MsgBack}
 
   <h3 .mt-3>_{MsgEvents}
   <div .list-group>

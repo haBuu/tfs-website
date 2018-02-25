@@ -1,6 +1,6 @@
 <div .container>
-  <a .mt-3 href=@{AdminR} .btn .btn-secondary .btn-block>_{MsgBack}
-  <form .mt-1 method=post action=@{AddPostR}#form>
+  <a .mt-3 href=@{AdminR} .btn .btn-light .btn-block>_{MsgBack}
+  <form .mt-3 method=post action=@{AddPostR}#form>
     <div .form-group>
       <label for=title>Otsikko
       <input type=text name=title .form-control #title placeholder=Otsikko>
@@ -8,5 +8,5 @@
       <label for=markdown>Uutinen
       <textarea .form-control #markdown name=markdown placeholder=Uutinen rows=20 required oninput=this.editor.update()>
     <div .form-group>
-      <button #save type=submit .btn .btn-secondary .btn-block>_{MsgAddPost}
+      <button #save type=submit .btn .btn-light .btn-block>_{MsgAddPost}
   ^{markdownPreview}

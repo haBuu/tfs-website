@@ -3,4 +3,4 @@
   <form .mt-3 method=post enctype=#{formEnctype}>
     ^{formWidget}
 
-  <a .mt-1 href=@{UsersR} .btn .btn-secondary .btn-block>_{MsgCancel}
+  <a .mt-1 href=@{UsersR} .btn .btn-light .btn-block>_{MsgCancel}
