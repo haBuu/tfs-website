@@ -121,8 +121,6 @@ instance Yesod App where
   isAuthorized (EditEventR _) _ = isAdmin
   isAuthorized (EventR _) _ = isAdmin
   isAuthorized ImageR _ = isAdmin
-  isAuthorized ClubMembersR _ = isAdmin
-  isAuthorized (ClubMemberR _) _ = isAdmin
   isAuthorized PagesR _ = isAdmin
   isAuthorized (EditPageR _) _ = isAdmin
 

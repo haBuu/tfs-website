@@ -32,7 +32,6 @@ library
                      Handler.Club
                      Handler.Competitions
                      Handler.Contact
-                     Handler.ClubMember
                      Handler.Day
                      Handler.Pages
                      Forms

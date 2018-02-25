@@ -42,7 +42,6 @@ import Handler.Courses
 import Handler.Club
 import Handler.Competitions
 import Handler.Contact
-import Handler.ClubMember
 import Handler.Day
 import Handler.Pages
 

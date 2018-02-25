@@ -36,10 +36,3 @@ Event
   endDate Day Maybe
   post PostId Maybe
   deriving Show
-
-ClubMember
-  pdgaNumber Int
-  name Text Maybe
-  rating Int Maybe
-  UniqueClubMember pdgaNumber
-  deriving Show

@@ -31,9 +31,6 @@
 /admin/users UsersR GET
 !/admin/user/#UserId UserR GET POST
 
-/admin/club-members ClubMembersR GET POST
-/admin/club-member/#ClubMemberId ClubMemberR DELETE
-
 /admin/pages PagesR GET
 /admin/page/#PageMarkdownId/edit EditPageR GET POST
 
