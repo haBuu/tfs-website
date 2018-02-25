@@ -78,9 +78,9 @@ instance Yesod App where
     -- value passed to hamletToRepHtml cannot be a widget, this allows
     -- you to use normal widget features in default-layout.
     pc <- widgetToPageContent $ do
-      addStylesheetRemote "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-      addScriptRemote "//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"
-      addScriptRemote "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+      addStylesheetRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      addScriptRemote "//code.jquery.com/jquery-3.2.1.slim.min.js"
+      addScriptRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
       $(widgetFile "style")
       $(widgetFile "header")
       $(widgetFile "banner")
