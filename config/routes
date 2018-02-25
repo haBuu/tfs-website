@@ -11,7 +11,7 @@
 
 /companies CompaniesR GET
 /courses CoursesR GET
-/club ClubR GET POST
+/club ClubR GET
 /competitions CompetitionsR GET
 /contact ContactR GET
 

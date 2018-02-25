@@ -20,9 +20,8 @@ PageMarkdown
   page Page
   content Markdown
   created UTCTime
-  userCreated UserId
-  modified UTCTime Maybe
-  userModified UserId Maybe
+  user UserId
+  version Int
   deriving Show
 
 Event

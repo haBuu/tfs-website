@@ -113,3 +113,5 @@ Courses: Courses
 Competitions: Competitions
 Contact: Contact
 ResetOriginal: Reset original
+OldVersions: Old versions
+Version: Version

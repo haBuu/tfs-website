@@ -113,3 +113,5 @@ Courses: Radat
 Competitions: Viikkokisat
 Contact: Yhteystiedot
 ResetOriginal: Palauta alkuperäinen
+OldVersions: Vanhat versiot
+Version: Versio

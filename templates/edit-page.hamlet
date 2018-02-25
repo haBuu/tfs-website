@@ -9,3 +9,12 @@
       <button #save type=submit .btn .btn-secondary .btn-block>_{MsgSave}
   <button .mb-3 #reset type=button .btn .btn-secondary .btn-block>_{MsgResetOriginal}
   ^{markdownPreview}
+
+  <h4>_{MsgOldVersions}
+  <div .list-group .mb-3>
+    $forall (Entity pid page) <- versions
+      <a href=@{EditPageR pid} .list-group-item .list-group-item-action .flex-column .align-items-start>
+        <div .d-flex .w-100 .justify-content-between>
+          <h5 .mb-1>_{MsgVersion} #{pageMarkdownVersion page}
+          <small .text-muted>
+            #{show $ pageMarkdownUser page}, #{showTime tz $ pageMarkdownCreated page}
