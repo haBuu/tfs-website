@@ -8,12 +8,12 @@
     <div .row .my-3>
       <div .col-md-4 .col-xs-4>
         <a href=https://www.facebook.com/groups/269964159713029/ target=_blank>
-          <img .small-image .img-fluid .mx-auto .d-block alt=https://www.facebook.com/groups/269964159713029/ title=Facebook src=@{StaticR img_facebook_png}>
+          <img .small-image .img-fluid .mx-auto .d-block alt=Facebook title=Facebook src=@{StaticR img_facebook_png}>
       <div .col-md-4 .col-xs-4>
         <a href=https://www.instagram.com/tampereen_frisbeeseura/ target=_blank>
-          <img .small-image .img-fluid .mx-auto .d-block alt=https://www.instagram.com/tampereen_frisbeeseura/ title=Instagram src=@{StaticR img_instagram_png}>
+          <img .small-image .img-fluid .mx-auto .d-block alt=Instagram title=Instagram src=@{StaticR img_instagram_png}>
       <div .col-md-4 .col-xs-4>
-        <a href= target=_blank>
-          <img .small-image .img-fluid .mx-auto .d-block alt=https://www.instagram.com/tampereen_frisbeeseura/ title=Youtube src=@{StaticR img_youtube_png}>
+        <a href=https://www.youtube.com/channel/UCIxfVxvkH6FfAJULIv-4f4Q target=_blank>
+          <img .small-image .img-fluid .mx-auto .d-block alt=Youtube title=Youtube src=@{StaticR img_youtube_png}>
 
   ^{bagtag}
