@@ -3,13 +3,16 @@
   <a .mt-3 href=@{AdminR} .btn .btn-light .btn-block>_{MsgBack}
 
   <h3 .mt-3>_{MsgPosts}
-  <div .list-group>
+  <div .list-group .mb-3>
     $forall (Entity pid post, Entity _ user) <- posts
       <a href=@{EditPostR pid} .list-group-item .list-group-item-action .flex-column .align-items-start>
-        <div .d-flex .w-100 .justify-content-between>
+        <div>
           <h5 .mb-1>#{postTitle post}
-        <small .text-muted>
-          #{showTime tz $ postCreated post}, #{userName user}
-        $maybe modified <- postModified post
+        <div>
           <small .text-muted>
-            #{showTime tz modified}, #{userName user}
+            #{showTime tz $ postCreated post}
+            $maybe modified <- postModified post
+               \ (_{MsgModified} #{showTime tz modified})
+        <div>
+          <small .text-muted>
+            #{userName user}

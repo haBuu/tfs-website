@@ -34,15 +34,8 @@ import Handler.Common
 import Handler.Home
 import Handler.Admin
 import Handler.Post
-import Handler.Event
 import Handler.User
 import Handler.Image
-import Handler.Companies
-import Handler.Courses
-import Handler.Club
-import Handler.Competitions
-import Handler.Contact
-import Handler.Day
 import Handler.Pages
 
 -- This line actually creates our YesodDispatch instance. It is the second half

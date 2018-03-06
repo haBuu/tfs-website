@@ -29,6 +29,7 @@
           success: function(url) {
             var textArea = $('textarea');
             textArea.val(textArea.val() + '\r\n![](' + url + ')\r\n');
+            textArea.oninput();
           },
           error: function(res) {
             alert('#{rawJS $ mr MsgImageUploadFailed}');

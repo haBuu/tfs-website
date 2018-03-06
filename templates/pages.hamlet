@@ -1,5 +1,38 @@
 <div .container>
   <a .mt-3 href=@{AdminR} .btn .btn-light .btn-block>_{MsgBack}
-  <div .mt-3 .list-group>
-    $forall (pageId, pageName) <- pages
-      <a href=@{EditPageR pageId} .list-group-item .list-group-item-action>_{pageMsg pageName}
+
+  <form .mt-3 method=post action=@{AddPageR}#form enctype=#{formEnctype}>
+    ^{formWidget}
+
+  <div .mt-3 .card>
+    <div .card-header>
+      Pääsivut
+    <div .list-group .list-group-flush>
+      $if null toplevelPages
+        <li .list-group-item>Ei pääsivuja
+      $else
+        $forall (Entity pid page) <- toplevelPages
+          <a .list-group-item .list-group-item-action href=@{EditPageR pid 0}>
+            #{pageName page}
+
+  <div .mt-3 .card>
+    <div .card-header>
+      Muut sivut
+    <div .list-group .list-group-flush>
+      $if null otherPages
+        <li .list-group-item>Ei muita sivuja
+      $else
+        $forall (Entity pid page) <- otherPages
+          <a .list-group-item .list-group-item-action href=@{EditPageR pid 0}>
+            #{pageName page}
+
+  <div .mt-3 .card>
+    <div .card-header>
+      Poistetut sivut
+    <div .list-group .list-group-flush>
+      $if null obsoletePages
+        <li .list-group-item>Ei poistettuja sivuja
+      $else
+        $forall (Entity pid page) <- obsoletePages
+          <a .list-group-item .list-group-item-action href=@{EditPageR pid 0}>
+            #{pageName page}

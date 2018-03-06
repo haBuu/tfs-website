@@ -8,11 +8,8 @@
 
   <div .collapse .navbar-collapse .justify-content-md-center #navbar>
     <div .navbar-nav>
-      <a .nav-item .nav-link href=@{ClubR}>_{MsgNavClub}
-      <a .nav-item .nav-link href=@{CompaniesR}>_{MsgNavCompanies}
-      <a .nav-item .nav-link href=@{CoursesR}>_{MsgNavCourses}
-      <a .nav-item .nav-link href=@{CompetitionsR}>_{MsgNavWeeklyCompetitions}
-      <a .nav-item .nav-link href=@{ContactR}>_{MsgNavContact}
+      $forall (Entity _ page) <- pages
+        <a .nav-item .nav-link href=@{PageR $ toLower $ pageName page}>#{pageName page}
       $maybe (Entity _ user) <- muser
         $if userAdmin user
           <a .nav-item .nav-link href=@{AdminR}>_{MsgNavAdmin}

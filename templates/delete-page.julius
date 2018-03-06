@@ -1,0 +1,31 @@
+(function() {
+
+  $('button#delete-page').on('click', function() {
+    var url = $(this).data('url');
+    $.ajax({
+      type: 'DELETE',
+      url: url,
+      success: function() {
+        window.location.href = '@{PagesR}';
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        $('div#page-delete-error').toggle();
+      }
+    });
+  });
+
+  $('button#restore-page').on('click', function() {
+    var url = $(this).data('url');
+    $.ajax({
+      type: 'PUT',
+      url: url,
+      success: function() {
+        window.location.href = '@{PagesR}';
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        $('div#page-edit-error').toggle();
+      }
+    });
+  });
+
+})();

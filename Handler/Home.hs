@@ -5,7 +5,6 @@ import Import
 import Data.Time.LocalTime
 
 import Helpers
-import Calendar
 import Members
 import Model.Post
 
@@ -26,11 +25,10 @@ getHomePageR page = do
     return (p, c)
   let pages = ceiling $ fromIntegral postCount / fromIntegral postsPerPage
   tz <- liftIO getCurrentTimeZone
-  calendar <- calendarWidget
   bagtag <- bagtagWidget
   defaultLayout $ do
+    $(widgetFile "banner")
     let sidebar = $(widgetFile "sidebar")
-    $(widgetFile "calendar")
     $(widgetFile "home")
 
 pageLinks :: Int -> Int -> [Int]

@@ -11,24 +11,22 @@ import Data.Maybe
 getUsersR :: Handler Html
 getUsersR = do
   users <- runDB $ selectList [] [Asc UserName]
-  adminLayout $ do
-    setTitleI MsgUsers
+  defaultLayout $ do
     $(widgetFile "users")
 
 getUserR :: UserId -> Handler Html
 getUserR uid = do
   user <- runDB $ get404 uid
   ((_, formWidget), formEnctype) <- runFormPost $ editUserForm user
-  adminLayout $ do
-    setTitleI MsgUser
+  defaultLayout $ do
     $(widgetFile "user")
 
 postUserR :: UserId -> Handler Html
 postUserR uid = do
   user <- runDB $ get404 uid
   ((result, _), _) <- runFormPost $ editUserForm user
-  formHandler result $ \user -> do
-    runDB $ replace uid user
+  formHandler result $ \res -> do
+    runDB $ replace uid res
     setMessageI MsgUserUpdated
   redirect $ UserR uid
 
@@ -37,8 +35,6 @@ editUserForm user extra = do
   mr <- getMessageRender
   (nameRes, nameView) <- mreq textField
     (withPlaceholder (mr MsgName) $ bfs MsgName) (Just $ userName user)
-  (emailRes, emailView) <- mopt emailField
-    (withPlaceholder (mr MsgEmail) $ bfs MsgEmail) (Just $ userEmail user)
   (adminRes, adminView) <- mreq checkBoxField
     (FieldSettings (SomeMessage MsgAdmin) Nothing Nothing Nothing
       [("class", "form-check-input")]) (Just $ userAdmin user)
@@ -46,7 +42,6 @@ editUserForm user extra = do
     (FieldSettings (SomeMessage MsgSuperAdmin) Nothing Nothing Nothing
       [("class", "form-check-input")]) (Just $ userSuperAdmin user)
   let result = User <$> nameRes
-                    <*> emailRes
                     <*> pure (userPassword user)
                     <*> adminRes
                     <*> superAdminRes
@@ -55,9 +50,6 @@ editUserForm user extra = do
         <div .form-group>
           <label .control-label>^{fvLabel nameView}
           ^{fvInput nameView}
-        <div .form-group>
-          <label .control-label>^{fvLabel emailView}
-          ^{fvInput emailView}
         <div .form-check>
           <label .form-check-label>
             ^{fvInput adminView} ^{fvLabel adminView}
@@ -72,7 +64,7 @@ editUserForm user extra = do
 getAddUserR :: Handler Html
 getAddUserR = do
   ((_, formWidget), formEnctype) <- runFormPost newUserForm
-  adminLayout $ do
+  defaultLayout $ do
     setTitleI MsgAddUser
     $(widgetFile "add-user")
 
@@ -82,15 +74,13 @@ postAddUserR = do
   formHandler result $ \user -> do
     runDB $ insert_ =<< setPassword (fromJust $ userPassword user) user
     setMessageI MsgUserAdded
-  redirect AdminR
+  redirect UsersR
 
 newUserForm :: Form User
 newUserForm extra = do
   mr <- getMessageRender
   (nameRes, nameView) <- mreq textField
     (withPlaceholder (mr MsgName) $ bfs MsgName) Nothing
-  (emailRes, emailView) <- mopt emailField
-    (withPlaceholder (mr MsgEmail) $ bfs MsgEmail) Nothing
   (pwRes, pwView) <- mopt textField
     (withPlaceholder (mr MsgPassword) $ bfs MsgPassword) Nothing
   (adminRes, adminView) <- mreq checkBoxField
@@ -100,7 +90,6 @@ newUserForm extra = do
     (FieldSettings (SomeMessage MsgSuperAdmin) Nothing Nothing Nothing
       [("class", "form-check-input")]) Nothing
   let result = User <$> nameRes
-                    <*> emailRes
                     <*> pwRes
                     <*> adminRes
                     <*> superAdminRes
@@ -109,9 +98,6 @@ newUserForm extra = do
         <div .form-group>
           <label .control-label>^{fvLabel nameView}
           ^{fvInput nameView}
-        <div .form-group>
-          <label .control-label>^{fvLabel emailView}
-          ^{fvInput emailView}
         <div .form-group>
           <label .control-label>^{fvLabel pwView}
           ^{fvInput pwView}

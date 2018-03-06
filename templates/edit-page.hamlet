@@ -1,20 +1,35 @@
 <div .container .mt-1>
   <a .mb-1 .my-3 href=@{PagesR} .btn .btn-light .btn-block>_{MsgBack}
-  <h1>_{pageMsg $ pageMarkdownPage pageMarkdown}
-  <form method=post action=@{EditPageR pageId}#form>
+  <div .mt-3 #page-delete-error .alert .alert-danger .alert-dismissible role=alert style="display: none;">
+    <button type=button .close data-dismiss=alert aria-label=Close>
+      <span aria-hidden="true">&times;
+    _{MsgDeletePageError}
+  <div .mt-3 #page-edit-error .alert .alert-danger .alert-dismissible role=alert style="display: none;">
+    <button type=button .close data-dismiss=alert aria-label=Close>
+      <span aria-hidden="true">&times;
+    _{MsgRestorePageError}
+  <h1 .mb-3>#{pageName page}
+  <form method=post action=@{EditPageR pid 0}#form>
     <div .form-group>
       <textarea .form-control #markdown name=markdown rows=20 oninput=this.editor.update()>
-        #{unMarkdown $ pageMarkdownContent pageMarkdown}
+        $maybe (Entity _ pageContent) <- maybePageContent
+          #{unMarkdown $ pageContentContent pageContent}
     <div .form-group>
       <button #save type=submit .btn .btn-light .btn-block>_{MsgSave}
+
+  $if pageObsolete page
+    <button .mb-3 #restore-page data-url=@{EditPageR pid 0} .btn .btn-light .btn-block>_{MsgRestorePage}
+  $else
+    <button .mb-3 #delete-page data-url=@{EditPageR pid 0} .btn .btn-light .btn-block>_{MsgRemove}
+
   <button .mb-3 #reset type=button .btn .btn-light .btn-block>_{MsgResetOriginal}
   ^{markdownPreview}
 
-  <h4>_{MsgVersionHistory}
+  <h4 .mb-3>_{MsgVersionHistory}
   <div .list-group .mb-3>
-    $forall ((Entity pid page), (Entity _ user)) <- versions
-      <a href=@{EditPageR pid} .list-group-item .list-group-item-action .flex-column .align-items-start>
-        <div .d-flex .w-100 .justify-content-between>
-          <h5>_{MsgVersion} #{pageMarkdownVersion page}
+    $forall ((Entity _ pageContent), (Entity _ user)) <- versions
+      <a href=@{EditPageR pid $ pageContentVersion pageContent} .list-group-item .list-group-item-action .flex-column .align-items-start>
+        <div>
+          <p>_{MsgVersion} #{pageContentVersion pageContent}
           <small .text-muted>
-            #{showTime tz $ pageMarkdownCreated page}, #{userName user}
+            #{showTime tz $ pageContentCreated pageContent}, #{userName user}

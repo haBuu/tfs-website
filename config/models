@@ -1,6 +1,5 @@
 User
   name Text
-  email Text Maybe
   password Text Maybe
   admin Bool
   superAdmin Bool
@@ -16,22 +15,18 @@ Post
   content Markdown
   deriving Show
 
-PageMarkdown
-  page Page
+Page
+  name Text
+  topLevel Bool
+  rank Int
+  obsolete Bool
+  UniquePage name
+  deriving Show
+
+PageContent
+  page PageId
   content Markdown
   created UTCTime
   user UserId
   version Int
-  deriving Show
-
-Event
-  user UserId
-  created UTCTime
-  modified UTCTime Maybe
-  title Text
-  organizer Text
-  content Markdown
-  startDate Day
-  endDate Day Maybe
-  post PostId Maybe
   deriving Show

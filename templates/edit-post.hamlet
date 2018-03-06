@@ -1,6 +1,8 @@
 <div .container>
   <a .mt-3 href=@{PostsR} .btn .btn-light .btn-block>_{MsgBack}
   <div .mt-3 #post-delete-error .alert .alert-danger .alert-dismissible role=alert style="display: none;">
+    <button type=button .close data-dismiss=alert aria-label=Close>
+      <span aria-hidden="true">&times;
     _{MsgDeletePostError}
   <form .mt-3 method=post action=@{PostR pid}#form>
     <div .form-group>

@@ -9,12 +9,6 @@
 !/#Int HomePageR GET
 /post/#PostId OnePostR GET
 
-/companies CompaniesR GET
-/courses CoursesR GET
-/club ClubR GET
-/competitions CompetitionsR GET
-/contact ContactR GET
-
 /admin AdminR GET
 
 /admin/posts PostsR GET
@@ -22,17 +16,14 @@
 !/admin/post/#PostId PostR POST DELETE
 /admin/post/#PostId/edit EditPostR GET
 
-/admin/events EventsR GET
-/admin/event/add AddEventR GET POST
-!/admin/event/#EventId EventR POST DELETE
-/admin/event/#EventId/edit EditEventR GET
-
 /admin/user/add AddUserR GET POST
 /admin/users UsersR GET
 !/admin/user/#UserId UserR GET POST
 
 /admin/pages PagesR GET
-/admin/page/#PageMarkdownId/edit EditPageR GET POST
+/admin/page AddPageR POST
+/admin/page/edit/#PageId/#Int EditPageR GET POST DELETE PUT
 
 /admin/image ImageR POST
-/events/#Day DayR GET
+
+!/#Text PageR GET

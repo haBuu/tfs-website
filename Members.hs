@@ -13,16 +13,14 @@ import Control.Lens
 import Data.Aeson (FromJSON)
 import Data.Aeson.Types (typeMismatch)
 
-import Helpers
-
 data Player = Player
-  { number :: String
-  , name :: Maybe String
+  { _number :: String
+  , _name :: Maybe String
   } deriving (Show, Generic)
 
 data Players = Players
   { players :: [Player]
-  , errors :: [String]
+  , _errors :: [String]
   } deriving (Show, Generic)
 
 instance FromJSON Players where
@@ -61,7 +59,7 @@ bagtagWidget' :: [Player] -> Widget
 bagtagWidget' players = [whamlet|
   <div .card .mb-3>
     <h3 .card-header>
-      <a .bagtag-link href=https://dgmtrx.com/bagtag/?bagtag_id=6>Bagtag
+      <a .bagtag-link href=https://dgmtrx.com/bagtag/?bagtag_id=6 target=_blank>Bagtag
     <div .card-body>
       <ol>
         $forall (Player _ mp) <- players

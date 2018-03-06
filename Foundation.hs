@@ -9,7 +9,6 @@ import Yesod.Default.Util   (addStaticContentExternal)
 import Yesod.Core.Types     (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
 
-import Yesod.Form.Bootstrap3
 import Yesod.Auth.HashDB (HashDBUser(..))
 import Yesod.Auth.HashDB (authHashDBWithForm)
 
@@ -71,6 +70,7 @@ instance Yesod App where
     master <- getYesod
     mmsg <- getMessage
     muser <- maybeAuth
+    pages <- runDB $ selectList [PageTopLevel ==. True, PageObsolete ==. False] []
 
     -- We break up the default layout into two components:
     -- default-layout is the contents of the body tag, and
@@ -79,11 +79,10 @@ instance Yesod App where
     -- you to use normal widget features in default-layout.
     pc <- widgetToPageContent $ do
       addStylesheetRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      addScriptRemote "//code.jquery.com/jquery-3.2.1.slim.min.js"
+      addScriptRemote "//code.jquery.com/jquery-3.2.1.min.js"
       addScriptRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
       $(widgetFile "style")
       $(widgetFile "header")
-      $(widgetFile "banner")
       $(widgetFile "message")
       $(widgetFile "default-layout")
       setTitle "Tampereen Frisbeeseura"
@@ -103,12 +102,7 @@ instance Yesod App where
   isAuthorized HomeR _ = return Authorized
   isAuthorized (OnePostR _) _ = return Authorized
   isAuthorized (HomePageR _) _ = return Authorized
-  isAuthorized ClubR _ = return Authorized
-  isAuthorized CoursesR _ = return Authorized
-  isAuthorized ContactR _ = return Authorized
-  isAuthorized CompaniesR _ = return Authorized
-  isAuthorized CompetitionsR _ = return Authorized
-  isAuthorized (DayR _) _ = return Authorized
+  isAuthorized (PageR _) _ = return Authorized
 
   -- admin
   isAuthorized AdminR _ = isAdmin
@@ -116,13 +110,10 @@ instance Yesod App where
   isAuthorized AddPostR _ = isAdmin
   isAuthorized (EditPostR _) _ = isAdmin
   isAuthorized (PostR _) _ = isAdmin
-  isAuthorized EventsR _ = isAdmin
-  isAuthorized AddEventR _ = isAdmin
-  isAuthorized (EditEventR _) _ = isAdmin
-  isAuthorized (EventR _) _ = isAdmin
   isAuthorized ImageR _ = isAdmin
   isAuthorized PagesR _ = isAdmin
-  isAuthorized (EditPageR _) _ = isAdmin
+  isAuthorized (EditPageR _ _) _ = isAdmin
+  isAuthorized AddPageR _ = isAdmin
 
   -- super admin
   isAuthorized AddUserR _ = isSuperAdmin
@@ -212,7 +203,7 @@ instance YesodAuth App where
 
   authHttpManager = getHttpManager
 
-  authLayout = adminLayout
+  authLayout = defaultLayout
 
 instance HashDBUser User where
   userPasswordHash = userPassword
@@ -250,19 +241,3 @@ myLoginForm action = do
         <fieldset .form-group>
           <button type=submit .btn .btn-light .btn-block>_{MsgLogin}
   |]
-
-adminLayout :: Widget -> Handler Html
-adminLayout widget = do
-  master <- getYesod
-  mmsg <- getMessage
-  muser <- maybeAuth
-  pc <- widgetToPageContent $ do
-    addStylesheetRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    addScriptRemote "//code.jquery.com/jquery-3.2.1.slim.min.js"
-    addScriptRemote "//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    $(widgetFile "style")
-    $(widgetFile "header")
-    $(widgetFile "message")
-    $(widgetFile "default-layout")
-    setTitle "Tampereen Frisbeeseura"
-  withUrlRenderer $(hamletFile "templates/default-layout-wrapper.hamlet")

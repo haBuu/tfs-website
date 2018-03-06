@@ -24,27 +24,16 @@ library
                      Handler.Home
                      Handler.Admin
                      Handler.Post
-                     Handler.Event
                      Handler.User
                      Handler.Image
-                     Handler.Companies
-                     Handler.Courses
-                     Handler.Club
-                     Handler.Competitions
-                     Handler.Contact
-                     Handler.Day
                      Handler.Pages
                      Forms
                      Helpers
                      ErrorHandlers
-                     Datepicker
-                     Calendar
-                     Model.Event
                      Model.Post
                      Model.Page
                      Model.PageMarkdown
                      Members
-                     PageMessage
 
     if flag(dev) || flag(library-only)
         cpp-options:   -DDEVELOPMENT

@@ -1,11 +1,15 @@
 <div .container>
   <div .mt-3 .list-group>
-    <a href=@{AddPostR} .list-group-item .list-group-item-action>_{MsgAddPost}
-    <a href=@{PostsR} .list-group-item .list-group-item-action>_{MsgEditPosts}
-    <a href=@{AddEventR} .list-group-item .list-group-item-action>_{MsgAddEvent}
-    <a href=@{EventsR} .list-group-item .list-group-item-action>_{MsgEditEvents}
-    <a href=@{PagesR} .list-group-item .list-group-item-action>_{MsgPages}
-    <a href=https://www.suomisport.fi/ .list-group-item .list-group-item-action>_{MsgClubMembers} (Suomisport)
+    <a href=@{AddPostR} .list-group-item .list-group-item-action>
+      _{MsgAddPost}
+    <a href=@{PostsR} .list-group-item .list-group-item-action>
+      _{MsgEditPosts}
+    <a href=@{PagesR} .list-group-item .list-group-item-action>
+      _{MsgPages}
+    <a href=https://www.suomisport.fi/ .list-group-item .list-group-item-action target=_blank>
+      _{MsgClubMembers} (Suomisport)
     $if userSuperAdmin user
-      <a href=@{UsersR} .list-group-item .list-group-item-action>_{MsgUsers}
-    <a href=@{AuthR LogoutR} .list-group-item .list-group-item-action>_{MsgLogout}
+      <a href=@{UsersR} .list-group-item .list-group-item-action>
+        _{MsgUsers}
+    <a href=@{AuthR LogoutR} .list-group-item .list-group-item-action>
+      _{MsgLogout}

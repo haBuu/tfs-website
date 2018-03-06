@@ -1,14 +1,12 @@
 module Model.Page where
 
-import Prelude
-import Database.Persist.TH
+import Import
 
-data Page
-  = Club
-  | Companies
-  | Courses
-  | Competitions
-  | Contact
-  deriving (Show, Read, Eq, Enum, Bounded)
+topLevelFilter :: Page -> Bool
+topLevelFilter page = (pageTopLevel page) && (not $ pageObsolete page)
 
-derivePersistField "Page"
+otherFilter :: Page -> Bool
+otherFilter page = (not $ pageTopLevel page) && (not $ pageObsolete page)
+
+obsoleteFilter :: Page -> Bool
+obsoleteFilter page = pageObsolete page

@@ -1,15 +1,19 @@
 <div .col-md-3 .mt-3 .px-1>
-  ^{calendar}
 
   <div #partners .my-3>
+    <a href=https://frisbeegolfliitto.fi/ target=_blank>
+      <img .mb-3 .img-fluid .mx-auto .d-block alt=https://frisbeegolfliitto.fi/ title="Suomen frisbeegolfliitto" src=@{StaticR img_sfl_png}>
     <a href=http://www.tampere.fi/ target=_blank>
-      <img .mb-3 .img-fluid .mx-auto .d-block alt=http://www.tampere.fi/ title="Tampereen kaupunki" src=http://www.tampere.fi/images/tampere-logo-wide.gif>
-    <div .row>
-      <div .offset-xs-2 .offset-md-2 .col-md-4 .col-xs-4 .mb-2>
+      <img ..my-3 .img-fluid .mx-auto .d-block alt=http://www.tampere.fi/ title="Tampereen kaupunki" src=@{StaticR img_tampere_logo_gif}>
+    <div .row .my-3>
+      <div .col-md-4 .col-xs-4>
         <a href=https://www.facebook.com/groups/269964159713029/ target=_blank>
           <img .small-image .img-fluid .mx-auto .d-block alt=https://www.facebook.com/groups/269964159713029/ title=Facebook src=@{StaticR img_facebook_png}>
       <div .col-md-4 .col-xs-4>
         <a href=https://www.instagram.com/tampereen_frisbeeseura/ target=_blank>
           <img .small-image .img-fluid .mx-auto .d-block alt=https://www.instagram.com/tampereen_frisbeeseura/ title=Instagram src=@{StaticR img_instagram_png}>
+      <div .col-md-4 .col-xs-4>
+        <a href= target=_blank>
+          <img .small-image .img-fluid .mx-auto .d-block alt=https://www.instagram.com/tampereen_frisbeeseura/ title=Youtube src=@{StaticR img_youtube_png}>
 
   ^{bagtag}
