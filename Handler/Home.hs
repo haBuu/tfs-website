@@ -23,7 +23,7 @@ getHomePageR page = do
     p <- getPosts page postsPerPage
     c <- count ([] :: [Filter Post])
     return (p, c)
-  let pages = ceiling $ fromIntegral postCount / fromIntegral postsPerPage
+  let pages = ceiling $ (fromIntegral postCount / fromIntegral postsPerPage :: Double)
   tz <- liftIO getCurrentTimeZone
   bagtag <- bagtagWidget
   defaultLayout $ do

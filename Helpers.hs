@@ -13,7 +13,6 @@ import Prelude
 import Data.Time
 import Data.List(find)
 import Data.Text(Text)
-import Text.Printf
 import qualified Data.Text
 
 today :: IO Day

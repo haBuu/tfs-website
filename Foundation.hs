@@ -128,8 +128,7 @@ instance Yesod App where
     master <- getYesod
     let staticDir = appStaticDir $ appSettings master
     addStaticContentExternal
-        -- minifym
-        (\bs -> Right bs)
+        minifym
         genFileName
         staticDir
         (StaticR . flip StaticRoute [])

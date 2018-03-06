@@ -4,8 +4,6 @@ import ClassyPrelude.Yesod hiding (PageContent)
 import Yesod.Markdown (Markdown)
 import Database.Persist.Quasi
 
-import qualified Data.Text as T
-
 -- You can define all of your database entities in the entities file.
 -- You can find more information on persistent and how to declare entities
 -- at:

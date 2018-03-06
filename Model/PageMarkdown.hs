@@ -38,5 +38,8 @@ emptyPageContent :: PageId -> UTCTime -> UserId -> PageContent
 emptyPageContent pid time userId =
   PageContent pid (Markdown "") time userId 0
 
+selectPage :: PageId -> DB (Maybe (Entity PageContent))
 selectPage pid = selectFirst [PageContentPage ==. pid] defaultOrder
+
+defaultOrder :: [SelectOpt PageContent]
 defaultOrder = [Desc PageContentVersion, Desc PageContentCreated]
